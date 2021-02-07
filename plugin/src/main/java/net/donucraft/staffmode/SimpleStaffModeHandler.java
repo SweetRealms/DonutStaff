@@ -16,11 +16,9 @@ public class SimpleStaffModeHandler implements StaffModeHandler {
     @Inject @Named("messages") private FileCreator messages;
     @Inject @Named("freeze-cache") private Cache<UUID> freezeCache;
 
-    private final Set<UUID> frozenPlayers;
     private final Set<UUID> playersInStaffChat;
 
     public SimpleStaffModeHandler() {
-        frozenPlayers = new HashSet<>();
         playersInStaffChat = new HashSet<>();
     }
 
@@ -38,7 +36,7 @@ public class SimpleStaffModeHandler implements StaffModeHandler {
 
     @Override
     public boolean isPlayerFrozen(Player target) {
-        return frozenPlayers.contains(target.getUniqueId());
+        return freezeCache.exist(target.getUniqueId());
     }
 
     @Override
