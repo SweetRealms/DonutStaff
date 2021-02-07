@@ -5,6 +5,7 @@ import net.donutcraft.donutstaff.api.staffmode.StaffModeHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
@@ -16,7 +17,7 @@ public class PlayerChatListener implements Listener {
     @Inject private StaffModeHandler staffModeHandler;
     @Inject @Named("messages") private FileCreator messages;
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerChatEvent(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
         String message = event.getMessage();
