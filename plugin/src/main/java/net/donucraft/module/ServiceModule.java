@@ -9,6 +9,6 @@ public class ServiceModule implements Module {
 
     @Override
     public void configure(Binder binder) {
-        binder.bind(Service.class).named("donutstaff-service").to(DonutStaffService.class).singleton();
+        binder.bind(Service.class).named("main-service").to(DonutStaffService.class).singleton();
     }
 }

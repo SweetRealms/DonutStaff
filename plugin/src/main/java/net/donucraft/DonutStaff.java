@@ -10,7 +10,9 @@ import javax.inject.Named;
 
 public class DonutStaff extends JavaPlugin {
 
-    @Inject @Named("donutstaff-service") private DonutStaffService donutStaffService;
+    @Inject
+    @Named("main-service")
+    private DonutStaffService donutStaffService;
 
     public void onEnable() {
         Injector injector = Injector.create(new MainModule(this));

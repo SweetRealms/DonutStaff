@@ -6,6 +6,8 @@ public interface StaffModeHandler {
 
     void freezePlayer(Player target);
 
+    void unFreezePlayer(Player target);
+
     boolean isPlayerFrozen(Player target);
 
     void toggleStaffChat(Player player);

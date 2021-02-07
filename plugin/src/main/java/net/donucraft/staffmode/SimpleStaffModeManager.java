@@ -11,11 +11,12 @@ import org.bukkit.inventory.ItemStack;
 import team.unnamed.gui.core.item.type.ItemBuilder;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.*;
 
 public class SimpleStaffModeManager implements StaffModeManager {
 
-    @Inject private FileCreator messages;
+    @Inject @Named("messages") private FileCreator messages;
     @Inject private DonutStaff donutStaff;
 
     private final List<UUID> staffModeCache;
@@ -28,7 +29,7 @@ public class SimpleStaffModeManager implements StaffModeManager {
 
     @Override
     public void enableStaffMode(Player player) {
-        player.sendMessage(messages.getString("staff-mode.commands.enabled"));
+        player.sendMessage(messages.getString("staff-mode.commands.mode.enabled"));
         toggleVanish(player);
         savePlayerItems(player);
         giveStaffItemsToPlayer(player);
@@ -37,7 +38,7 @@ public class SimpleStaffModeManager implements StaffModeManager {
 
     @Override
     public void disableStaffMode(Player player) {
-        player.sendMessage(messages.getString("staff-mode.commands.disabled"));
+        player.sendMessage(messages.getString("staff-mode.commands.mode.disabled"));
         toggleVanish(player);
         givePlayerItems(player);
         staffModeCache.remove(player.getUniqueId());
@@ -67,19 +68,18 @@ public class SimpleStaffModeManager implements StaffModeManager {
     @Override
     public void giveStaffItemsToPlayer(Player player) {
         ItemStack compass = ItemBuilder.newBuilder(Material.COMPASS, 1)
-                .setName(messages.getString("staff.items.compass.name"))
-                .setLore(messages.getStringList("staff.items.compass.name.lore"))
+                .setName(messages.getString("items.compass.name"))
+                .setLore(messages.getStringList("items.compass.name.lore"))
                 .build();
 
-        ItemStack skull = ItemBuilder.newSkullBuilder(Material.SKULL, 1, (byte) 3)
-                .setOwner(player.getName())
-                .setName(messages.getString("staff.items.skull.name"))
-                .setLore(messages.getStringList("staff.items.skull.lore"))
+        ItemStack skull = ItemBuilder.newBuilder(Material.SKULL, 1, (byte) 3)
+                .setName(messages.getString("items.skull.name"))
+                .setLore(messages.getStringList("items.skull.lore"))
                 .build();
 
         ItemStack invsee = ItemBuilder.newBuilder(Material.STICK, 1)
-                .setName(messages.getString("staff.items.stick.name"))
-                .setLore(messages.getStringList("staff.items.stick.lore"))
+                .setName(messages.getString("items.stick.name"))
+                .setLore(messages.getStringList("items.stick.lore"))
                 .build();
 
         player.getInventory().setItem(0, compass);

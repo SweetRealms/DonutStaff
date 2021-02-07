@@ -1,0 +1,32 @@
+#ASDASDASDASDASDASD
+player:
+  freezer: "&a¡Has congelado a %player_name% con éxito!"
+  frozen-enabled: "&bHas sido congelado, no te muevas hasta que te revisen."
+  frozen-disabled: "&bAl parecer estás limpio, portate bien."
+
+staff-mode:
+  commands:
+    mode:
+      enabled: "&aHas activado el modo de staff."
+      disabled: "&cHas desactivado el modo de staff."
+    fake-leave: "&eEl jugador %player_name% se ha desconectado."
+  staff-chat:
+    prefix: "&9SC &7|| &r"
+    enabled: "&aHas activado el chat de staff correctamente."
+    disabled: "&cHas desactivado el chat de staff correctamente."
+
+#ITEMS
+items:
+  compass:
+    name: "&aASDA"
+    lore:
+      - "&cASD"
+  skull:
+    name: "&cASDASD"
+    lore:
+      - "&bASd"
+  stick:
+    name: "&6Un palo"
+    lore:
+      - "&cJoder un Palo"
+      - "&cEncima táctico"

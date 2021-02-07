@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>plugin</artifactId>
+    <artifactId>donutstaff</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -32,7 +32,7 @@
         <dependency>
             <groupId>me.yushust.inject</groupId>
             <artifactId>trew</artifactId>
-            <version>0.2.5-SNAPSHOT</version>
+            <version>0.2.3-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

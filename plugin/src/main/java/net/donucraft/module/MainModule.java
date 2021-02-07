@@ -13,10 +13,10 @@ import org.bukkit.plugin.Plugin;
 
 public class MainModule implements Module {
 
-    private DonutStaff donutStaff;
+    private final DonutStaff donutStaff;
 
-    public MainModule(DonutStaff futuristicClans) {
-        this.donutStaff = futuristicClans;
+    public MainModule(DonutStaff donutStaff) {
+        this.donutStaff = donutStaff;
     }
 
     @Override
@@ -28,6 +28,7 @@ public class MainModule implements Module {
 
 
         binder.install(fileMatcher.build());
+        binder.install(new ServiceModule());
 
         binder.bind(DonutStaff.class).toInstance(donutStaff);
         binder.bind(Plugin.class).to(DonutStaff.class);
@@ -35,7 +36,7 @@ public class MainModule implements Module {
         binder.bind(StaffModeManager.class).to(SimpleStaffModeManager.class);
         binder.bind(StaffModeHandler.class).to(SimpleStaffModeHandler.class);
 
-        binder.install(new ServiceModule());
+
 
     }
 }

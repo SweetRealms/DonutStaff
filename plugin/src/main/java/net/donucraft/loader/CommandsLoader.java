@@ -10,6 +10,7 @@ import me.fixeddev.commandflow.bukkit.BukkitCommandManager;
 import me.fixeddev.commandflow.bukkit.factory.BukkitModule;
 import me.fixeddev.commandflow.command.Command;
 import net.donucraft.DonutStaff;
+import net.donucraft.commands.FreezeCommand;
 import net.donucraft.commands.StaffChatCommand;
 import net.donucraft.commands.StaffModeCommand;
 
@@ -22,6 +23,7 @@ public class CommandsLoader implements Loader {
     @Inject private DonutStaff donutStaff;
     @Inject private StaffModeCommand staffModeCommand;
     @Inject private StaffChatCommand staffChatCommand;
+    @Inject private FreezeCommand freezeCommand;
 
     @Override
     public void load() {
@@ -35,6 +37,7 @@ public class CommandsLoader implements Loader {
         List<Command> commandList = new ArrayList<>();
         commandList.addAll(annotatedCommandTreeBuilder.fromClass(staffModeCommand));
         commandList.addAll(annotatedCommandTreeBuilder.fromClass(staffChatCommand));
+        commandList.addAll(annotatedCommandTreeBuilder.fromClass(freezeCommand));
 
         commandManager.registerCommands(commandList);
     }
