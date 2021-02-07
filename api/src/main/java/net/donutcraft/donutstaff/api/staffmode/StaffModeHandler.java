@@ -8,7 +8,7 @@ public interface StaffModeHandler {
 
     boolean isPlayerFrozen(Player target);
 
-    void enableOrDisableStaffChat(Player player);
+    void toggleStaffChat(Player player);
 
     boolean isPlayerInStaffChat(Player player);
 

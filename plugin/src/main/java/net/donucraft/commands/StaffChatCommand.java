@@ -16,7 +16,7 @@ public class StaffChatCommand implements CommandClass {
     @Command(names = "")
     public boolean onStaffChatCommand(@Sender Player player) {
 
-        staffModeHandler.enableOrDisableStaffChat(player);
+        staffModeHandler.toggleStaffChat(player);
 
         return true;
     }

@@ -39,7 +39,7 @@ public class SimpleStaffModeHandler implements StaffModeHandler {
     }
 
     @Override
-    public void enableOrDisableStaffChat(Player player) {
+    public void toggleStaffChat(Player player) {
         if (!isPlayerInStaffChat(player)) {
             player.sendMessage(messages.getString("staff-mode.staff-chat.enabled"));
             playersInStaffChat.add(player.getUniqueId());
