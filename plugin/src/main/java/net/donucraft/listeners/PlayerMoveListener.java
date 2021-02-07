@@ -2,7 +2,6 @@ package net.donucraft.listeners;
 
 import net.donutcraft.donutstaff.api.cache.Cache;
 import net.donutcraft.donutstaff.api.staffmode.StaffModeHandler;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -21,7 +20,7 @@ public class PlayerMoveListener implements Listener {
     public void onPlayerMoveEvent(PlayerMoveEvent event) {
         Player player = event.getPlayer();
 
-        if (freezeCache.exist(player.getUniqueId())) {
+        if (freezeCache.exists(player.getUniqueId())) {
             player.teleport(event.getFrom());
             event.setCancelled(true);
         }

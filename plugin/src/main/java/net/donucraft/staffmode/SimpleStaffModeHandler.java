@@ -15,12 +15,7 @@ public class SimpleStaffModeHandler implements StaffModeHandler {
 
     @Inject @Named("messages") private FileCreator messages;
     @Inject @Named("freeze-cache") private Cache<UUID> freezeCache;
-
-    private final Set<UUID> playersInStaffChat;
-
-    public SimpleStaffModeHandler() {
-        playersInStaffChat = new HashSet<>();
-    }
+    @Inject @Named("staff-chat-cache") private Cache<UUID> staffChatCache;
 
     @Override
     public void freezePlayer(Player target) {
@@ -36,23 +31,23 @@ public class SimpleStaffModeHandler implements StaffModeHandler {
 
     @Override
     public boolean isPlayerFrozen(Player target) {
-        return freezeCache.exist(target.getUniqueId());
+        return freezeCache.exists(target.getUniqueId());
     }
 
     @Override
     public void toggleStaffChat(Player player) {
         if (!isPlayerInStaffChat(player)) {
             player.sendMessage(messages.getString("staff-mode.staff-chat.enabled"));
-            playersInStaffChat.add(player.getUniqueId());
+            staffChatCache.add(player.getUniqueId());
             return;
         }
-        playersInStaffChat.remove(player.getUniqueId());
+        staffChatCache.remove(player.getUniqueId());
         player.sendMessage(messages.getString("staff-mode.staff-chat.disabled"));
     }
 
     @Override
     public boolean isPlayerInStaffChat(Player player) {
-        return playersInStaffChat.contains(player.getUniqueId());
+        return staffChatCache.exists(player.getUniqueId());
     }
 
     @Override

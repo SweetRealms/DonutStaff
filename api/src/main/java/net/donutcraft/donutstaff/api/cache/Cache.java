@@ -14,7 +14,7 @@ public interface Cache <T>{
 
     }
 
-    default boolean exist(T t) {
+    default boolean exists(T t) {
         return get().contains(t);
     }
 }
