@@ -8,34 +8,30 @@ import org.bukkit.entity.Player;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class SimpleStaffModeHandler implements StaffModeHandler {
 
     @Inject @Named("messages") private FileCreator messages;
 
-    private final List<UUID> frozenPlayers;
-    private final List<UUID> playersInStaffChat;
+    private final Set<UUID> frozenPlayers;
+    private final Set<UUID> playersInStaffChat;
 
     public SimpleStaffModeHandler() {
-        frozenPlayers = new ArrayList<>();
-        playersInStaffChat = new ArrayList<>();
+        frozenPlayers = new HashSet<>();
+        playersInStaffChat = new HashSet<>();
     }
 
     @Override
     public void freezePlayer(Player target) {
         target.sendMessage(messages.getString("player.frozen-enabled"));
         frozenPlayers.add(target.getUniqueId());
-        System.out.println(frozenPlayers.contains(target.getUniqueId()));
     }
 
     @Override
     public void unFreezePlayer(Player target) {
         target.sendMessage(messages.getString("player.frozen-disabled"));
         frozenPlayers.remove(target.getUniqueId());
-        System.out.println(frozenPlayers.contains(target.getUniqueId()));
     }
 
     @Override

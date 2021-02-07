@@ -16,7 +16,6 @@ public class ListenersLoader implements Loader {
 
     @Override
     public void load() {
-        System.out.println("Loaded listeners");
         registerListeners(
             playerChatListener,
             playerMoveListener

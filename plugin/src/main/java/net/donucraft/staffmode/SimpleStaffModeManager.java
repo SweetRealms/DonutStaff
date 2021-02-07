@@ -19,18 +19,20 @@ public class SimpleStaffModeManager implements StaffModeManager {
     @Inject @Named("messages") private FileCreator messages;
     @Inject private DonutStaff donutStaff;
 
-    private final List<UUID> staffModeCache;
+    private final Set<UUID> staffModeCache;
     private final Map<UUID, ItemStack[]> playerItemsCache = new HashMap<>();
     private final Map<UUID, ItemStack[]> playerArmorCache = new HashMap<>();
 
     public SimpleStaffModeManager() {
-        staffModeCache = new ArrayList<>();
+        staffModeCache = new HashSet<>();
     }
 
     @Override
     public void enableStaffMode(Player player) {
         player.sendMessage(messages.getString("staff-mode.commands.mode.enabled"));
         toggleVanish(player);
+        player.setAllowFlight(true);
+        player.setFlying(true);
         savePlayerItems(player);
         giveStaffItemsToPlayer(player);
         staffModeCache.add(player.getUniqueId());
@@ -39,6 +41,8 @@ public class SimpleStaffModeManager implements StaffModeManager {
     @Override
     public void disableStaffMode(Player player) {
         player.sendMessage(messages.getString("staff-mode.commands.mode.disabled"));
+        player.setFlying(false);
+        player.setAllowFlight(false);
         toggleVanish(player);
         givePlayerItems(player);
         staffModeCache.remove(player.getUniqueId());
@@ -81,7 +85,7 @@ public class SimpleStaffModeManager implements StaffModeManager {
                 .setName(messages.getString("items.stick.name"))
                 .setLore(messages.getStringList("items.stick.lore"))
                 .build();
-
+        player.getInventory().addItem(compass);
         player.getInventory().setItem(0, compass);
         player.getInventory().setItem(2, skull);
         player.getInventory().setItem(4, invsee);

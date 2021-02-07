@@ -22,7 +22,7 @@ public class PlayerChatListener implements Listener {
         String message = event.getMessage();
 
         if (staffModeHandler.isPlayerInStaffChat(player)) {
-            for (Player staff : Bukkit.getOnlinePlayers()) {
+            for (Player staff : Bukkit.getServer().getOnlinePlayers()) {
                 if (!staff.hasPermission("donutcraft.staffchat.receive")) {
                     return;
                 }
