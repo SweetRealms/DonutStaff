@@ -1,0 +1,105 @@
+package net.donucraft.staffmode;
+
+import net.donucraft.DonutStaff;
+import net.donucraft.files.FileCreator;
+import net.donutcraft.donutstaff.api.staffmode.StaffModeManager;
+
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import team.unnamed.gui.core.item.type.ItemBuilder;
+
+import javax.inject.Inject;
+import java.util.*;
+
+public class SimpleStaffModeManager implements StaffModeManager {
+
+    @Inject private FileCreator messages;
+    @Inject private DonutStaff donutStaff;
+
+    private final List<UUID> staffModeCache;
+    private final Map<UUID, ItemStack[]> playerItemsCache = new HashMap<>();
+    private final Map<UUID, ItemStack[]> playerArmorCache = new HashMap<>();
+
+    public SimpleStaffModeManager() {
+        staffModeCache = new ArrayList<>();
+    }
+
+    @Override
+    public void enableStaffMode(Player player) {
+        player.sendMessage(messages.getString("staff-mode.commands.enabled"));
+        toggleVanish(player);
+        savePlayerItems(player);
+        giveStaffItemsToPlayer(player);
+        staffModeCache.add(player.getUniqueId());
+    }
+
+    @Override
+    public void disableStaffMode(Player player) {
+        player.sendMessage(messages.getString("staff-mode.commands.disabled"));
+        toggleVanish(player);
+        givePlayerItems(player);
+        staffModeCache.remove(player.getUniqueId());
+    }
+
+    @Override
+    public void toggleVanish(Player player) {
+        if (isOnStaffMode(player)) {
+            for (Player player1 : Bukkit.getOnlinePlayers()) {
+                player1.showPlayer(donutStaff, player);
+            }
+            return;
+        }
+        for (Player player1 : Bukkit.getOnlinePlayers()) {
+            player1.hidePlayer(donutStaff, player);
+        }
+
+    }
+
+    @Override
+    public void savePlayerItems(Player player) {
+        playerArmorCache.put(player.getUniqueId(), player.getInventory().getArmorContents());
+        playerItemsCache.put(player.getUniqueId(), player.getInventory().getContents());
+        player.getInventory().clear();
+    }
+
+    @Override
+    public void giveStaffItemsToPlayer(Player player) {
+        ItemStack compass = ItemBuilder.newBuilder(Material.COMPASS, 1)
+                .setName(messages.getString("staff.items.compass.name"))
+                .setLore(messages.getStringList("staff.items.compass.name.lore"))
+                .build();
+
+        ItemStack skull = ItemBuilder.newSkullBuilder(Material.SKULL, 1, (byte) 3)
+                .setOwner(player.getName())
+                .setName(messages.getString("staff.items.skull.name"))
+                .setLore(messages.getStringList("staff.items.skull.lore"))
+                .build();
+
+        ItemStack invsee = ItemBuilder.newBuilder(Material.STICK, 1)
+                .setName(messages.getString("staff.items.stick.name"))
+                .setLore(messages.getStringList("staff.items.stick.lore"))
+                .build();
+
+        player.getInventory().setItem(0, compass);
+        player.getInventory().setItem(2, skull);
+        player.getInventory().setItem(4, invsee);
+
+    }
+
+    @Override
+    public void givePlayerItems(Player player) {
+        if (!playerItemsCache.containsKey(player.getUniqueId())) {
+            return;
+        }
+        player.getInventory().clear();
+        player.getInventory().setContents(playerItemsCache.get(player.getUniqueId()));
+        player.getInventory().setArmorContents(playerArmorCache.get(player.getUniqueId()));
+    }
+
+    @Override
+    public boolean isOnStaffMode(Player player) {
+        return staffModeCache.contains(player.getUniqueId());
+    }
+}

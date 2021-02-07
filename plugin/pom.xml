@@ -18,6 +18,13 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot</artifactId>
+            <version>1.12.2-R0.1-SNAPSHOT</version>
+            <type>jar</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>net.donutcraft</groupId>
             <artifactId>api</artifactId>
             <version>1.0</version>
@@ -33,6 +40,11 @@
             <artifactId>commandflow-bukkit</artifactId>
             <version>0.1.1-SNAPSHOT</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>team.unnamed.gui</groupId>
+            <artifactId>gui-core</artifactId>
+            <version>2.0.0</version>
         </dependency>
     </dependencies>
 
