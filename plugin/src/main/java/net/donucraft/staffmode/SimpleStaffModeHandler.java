@@ -1,6 +1,7 @@
 package net.donucraft.staffmode;
 
 import net.donucraft.files.FileCreator;
+import net.donutcraft.donutstaff.api.cache.Cache;
 import net.donutcraft.donutstaff.api.staffmode.StaffModeHandler;
 
 import org.bukkit.Bukkit;
@@ -13,6 +14,7 @@ import java.util.*;
 public class SimpleStaffModeHandler implements StaffModeHandler {
 
     @Inject @Named("messages") private FileCreator messages;
+    @Inject @Named("freeze-cache") private Cache<UUID> freezeCache;
 
     private final Set<UUID> frozenPlayers;
     private final Set<UUID> playersInStaffChat;
@@ -25,13 +27,13 @@ public class SimpleStaffModeHandler implements StaffModeHandler {
     @Override
     public void freezePlayer(Player target) {
         target.sendMessage(messages.getString("player.frozen-enabled"));
-        frozenPlayers.add(target.getUniqueId());
+        freezeCache.add(target.getUniqueId());
     }
 
     @Override
     public void unFreezePlayer(Player target) {
         target.sendMessage(messages.getString("player.frozen-disabled"));
-        frozenPlayers.remove(target.getUniqueId());
+        freezeCache.remove(target.getUniqueId());
     }
 
     @Override
