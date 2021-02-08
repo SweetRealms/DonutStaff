@@ -6,10 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="donutstaff-versions-v1_8_R3" />
         <module name="api" />
-        <module name="DonutStaff" />
         <module name="plugin" />
-        <module name="versions" />
       </profile>
     </annotationProcessing>
   </component>

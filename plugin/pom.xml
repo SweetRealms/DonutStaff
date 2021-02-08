@@ -26,7 +26,7 @@
         </dependency>
         <dependency>
             <groupId>net.donutcraft</groupId>
-            <artifactId>api</artifactId>
+            <artifactId>donutstaff-api</artifactId>
             <version>1.0</version>
         </dependency>
         <dependency>
