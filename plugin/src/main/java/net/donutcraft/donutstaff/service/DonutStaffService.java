@@ -17,7 +17,6 @@ public class DonutStaffService implements Service {
         nmsManager.enableNMS();
         commandsLoader.load();
         listenersLoader.load();
-        System.out.println("THE SERVER VERSION IS " + nmsManager.getServerVersion());
     }
 
     @Override

@@ -25,7 +25,7 @@ public class SimpleStaffModeHandler implements StaffModeHandler {
             target.sendMessage(line);
         }
         nmsManager.getNMSHandler().sendTitle(target, messages.getString("player.frozen-enabled.title"),
-                messages.getString("player.frozen-enabled.subtitle"),1, 3, 1);
+                messages.getString("player.frozen-enabled.subtitle"),5, 1000000, 5);
         freezeCache.add(target.getUniqueId());
     }
 
@@ -34,8 +34,9 @@ public class SimpleStaffModeHandler implements StaffModeHandler {
         for (String line : messages.getStringList("player.frozen-disabled.target")) {
             target.sendMessage(line);
         }
+        nmsManager.getNMSHandler().sendTitle(target, "", "", 1, 1, 1);
         nmsManager.getNMSHandler().sendTitle(target, messages.getString("player.frozen-disabled.title"),
-                messages.getString("player.frozen-disabled.subtitle"), 1, 3, 1);
+                messages.getString("player.frozen-disabled.subtitle"), 5, 20, 5);
         freezeCache.remove(target.getUniqueId());
     }
 
