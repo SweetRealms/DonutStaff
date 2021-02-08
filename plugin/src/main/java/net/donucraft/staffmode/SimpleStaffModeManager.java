@@ -39,6 +39,11 @@ public class SimpleStaffModeManager implements StaffModeManager {
     }
 
     @Override
+    public Set<UUID> getStaffPlayers() {
+        return staffModeCache;
+    }
+
+    @Override
     public void disableStaffMode(Player player) {
         player.sendMessage(messages.getString("staff-mode.commands.mode.disabled"));
         player.setFlying(false);
@@ -66,7 +71,6 @@ public class SimpleStaffModeManager implements StaffModeManager {
     public void savePlayerItems(Player player) {
         playerArmorCache.put(player.getUniqueId(), player.getInventory().getArmorContents());
         playerItemsCache.put(player.getUniqueId(), player.getInventory().getContents());
-        player.getInventory().clear();
     }
 
     @Override
@@ -85,7 +89,7 @@ public class SimpleStaffModeManager implements StaffModeManager {
                 .setName(messages.getString("items.stick.name"))
                 .setLore(messages.getStringList("items.stick.lore"))
                 .build();
-        player.getInventory().addItem(compass);
+        player.getInventory().clear();
         player.getInventory().setItem(0, compass);
         player.getInventory().setItem(2, skull);
         player.getInventory().setItem(4, invsee);

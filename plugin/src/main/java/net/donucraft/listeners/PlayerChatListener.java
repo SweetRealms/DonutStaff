@@ -28,9 +28,9 @@ public class PlayerChatListener implements Listener {
         if (staffChatCache.exists(player.getUniqueId())) {
             for (Player staff : Bukkit.getServer().getOnlinePlayers()) {
                 if (staff.hasPermission("donutcraft.staffchat.receive")) {
-                    staff.sendMessage(messages.getString("staff-mode.staff-chat.prefix") + message);
+                    staff.sendMessage(messages.getString("staff-mode.staff-chat.prefix")
+                            .replace("%player_name%", player.getName()) + message);
                 }
-
             }
             event.setMessage(null);
             event.setCancelled(true);

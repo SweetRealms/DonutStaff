@@ -11,7 +11,7 @@ staff-mode:
       disabled: "&cHas desactivado el modo de staff."
     fake-leave: "&eEl jugador %player_name% se ha desconectado."
   staff-chat:
-    prefix: "&9SC &7|| &r"
+    prefix: "&9SC &7|| &b%player_name% &7> &e"
     enabled: "&aHas activado el chat de staff correctamente."
     disabled: "&cHas desactivado el chat de staff correctamente."
 
