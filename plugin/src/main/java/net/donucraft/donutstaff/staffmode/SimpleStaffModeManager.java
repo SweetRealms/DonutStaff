@@ -2,6 +2,7 @@ package net.donucraft.donutstaff.staffmode;
 
 import net.donucraft.donutstaff.DonutStaff;
 import net.donucraft.donutstaff.files.FileCreator;
+import net.donucraft.donutstaff.util.nms.NMSManager;
 import net.donutcraft.donutstaff.api.cache.Cache;
 import net.donutcraft.donutstaff.api.staffmode.StaffModeManager;
 
@@ -20,6 +21,7 @@ public class SimpleStaffModeManager implements StaffModeManager {
     @Inject @Named("messages") private FileCreator messages;
     @Inject private DonutStaff donutStaff;
     @Inject @Named("staff-mode-cache") private Cache<UUID> staffModeCache;
+    @Inject private NMSManager nmsSetup;
 
     private final Map<UUID, ItemStack[]> playerItemsCache = new HashMap<>();
     private final Map<UUID, ItemStack[]> playerArmorCache = new HashMap<>();
@@ -32,6 +34,8 @@ public class SimpleStaffModeManager implements StaffModeManager {
         player.setFlying(true);
         savePlayerItems(player);
         giveStaffItemsToPlayer(player);
+        nmsSetup.getNMSHandler().sendActionBar(player,
+                messages.getString("staff-mode.commands.mode.action-bar-enabled"));
         staffModeCache.add(player.getUniqueId());
     }
 
@@ -42,6 +46,8 @@ public class SimpleStaffModeManager implements StaffModeManager {
         player.setAllowFlight(false);
         toggleVanish(player);
         givePlayerItems(player);
+        nmsSetup.getNMSHandler().sendActionBar(player,
+                messages.getString("staff-mode.commands.mode.action-bar-disabled"));
         staffModeCache.remove(player.getUniqueId());
     }
 

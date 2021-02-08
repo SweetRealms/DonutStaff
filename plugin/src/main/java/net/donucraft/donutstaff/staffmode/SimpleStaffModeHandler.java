@@ -1,6 +1,7 @@
 package net.donucraft.donutstaff.staffmode;
 
 import net.donucraft.donutstaff.files.FileCreator;
+import net.donucraft.donutstaff.util.nms.NMSManager;
 import net.donutcraft.donutstaff.api.cache.Cache;
 import net.donutcraft.donutstaff.api.staffmode.StaffModeHandler;
 
@@ -16,12 +17,15 @@ public class SimpleStaffModeHandler implements StaffModeHandler {
     @Inject @Named("messages") private FileCreator messages;
     @Inject @Named("freeze-cache") private Cache<UUID> freezeCache;
     @Inject @Named("staff-chat-cache") private Cache<UUID> staffChatCache;
+    @Inject private NMSManager nmsManager;
 
     @Override
     public void freezePlayer(Player target) {
         for (String line : messages.getStringList("player.frozen-enabled")) {
             target.sendMessage(line);
         }
+        nmsManager.getNMSHandler().sendTitle(target, "player.frozen-enabled.title",
+                "player.frozen-enabled.subtitle",1, 3, 1);
         freezeCache.add(target.getUniqueId());
     }
 
@@ -30,6 +34,8 @@ public class SimpleStaffModeHandler implements StaffModeHandler {
         for (String line : messages.getStringList("player.frozen-disabled")) {
             target.sendMessage(line);
         }
+        nmsManager.getNMSHandler().sendTitle(target, "player.frozen-disabled.title",
+                "player.frozen-disabled.subtitle", 1, 3, 1);
         freezeCache.remove(target.getUniqueId());
     }
 

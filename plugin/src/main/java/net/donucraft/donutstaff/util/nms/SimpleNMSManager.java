@@ -5,12 +5,12 @@ import org.bukkit.Bukkit;
 
 import java.util.regex.Pattern;
 
-public class SimpleNMSSetup implements NMSSetup {
+public class SimpleNMSManager implements NMSManager {
     private final String serverVersion;
 
     private NMSHandler nmsHandler;
 
-    public SimpleNMSSetup() {
+    public SimpleNMSManager() {
         serverVersion = Bukkit.getServer().getClass().getPackage().getName().split(Pattern.quote("."))[3];
     }
 
