@@ -21,7 +21,7 @@ public class SimpleStaffModeHandler implements StaffModeHandler {
 
     @Override
     public void freezePlayer(Player target) {
-        for (String line : messages.getStringList("player.frozen-enabled")) {
+        for (String line : messages.getStringList("player.frozen-enabled.target")) {
             target.sendMessage(line);
         }
         nmsManager.getNMSHandler().sendTitle(target, "player.frozen-enabled.title",
@@ -31,7 +31,7 @@ public class SimpleStaffModeHandler implements StaffModeHandler {
 
     @Override
     public void unFreezePlayer(Player target) {
-        for (String line : messages.getStringList("player.frozen-disabled")) {
+        for (String line : messages.getStringList("player.frozen-disabled.target")) {
             target.sendMessage(line);
         }
         nmsManager.getNMSHandler().sendTitle(target, "player.frozen-disabled.title",

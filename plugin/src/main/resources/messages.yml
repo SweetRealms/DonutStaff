@@ -1,17 +1,20 @@
 #ASDASDASDASDASDASD
 player:
-  freezer: "&a¡Has congelado a %player_name% con éxito!"
   frozen-enabled:
-    - "&7----------"
-    - "&bHas sido congelado, no te muevas"
-    - "hasta que te revisen."
-    - "&7----------"
+    freezer: "&a¡Has congelado a %player_name% con éxito!"
+    target:
+      - "&7----------"
+      - "&bHas sido congelado, no te muevas"
+      - "hasta que te revisen."
+      - "&7----------"
     title: "&cHAS SIDO CONGELADO"
     subtitle: "&4NO TE MUEVAS"
   frozen-disabled:
-    - "&7----------"
-    - "&bAl parecer estás limpio, portate bien."
-    - "&7----------"
+    freezer: "&a¡Has descongelado a %player_name% con éxito!"
+    target:
+      - "&7----------"
+      - "&bAl parecer estás limpio, portate bien."
+      - "&7----------"
     title: "&bHAS SIDO DESCONGELADO"
     subtitle: "&9ERES LIBRE"
 

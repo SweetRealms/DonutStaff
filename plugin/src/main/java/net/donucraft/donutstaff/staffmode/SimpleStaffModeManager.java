@@ -21,7 +21,7 @@ public class SimpleStaffModeManager implements StaffModeManager {
     @Inject @Named("messages") private FileCreator messages;
     @Inject private DonutStaff donutStaff;
     @Inject @Named("staff-mode-cache") private Cache<UUID> staffModeCache;
-    @Inject private NMSManager nmsSetup;
+    @Inject private NMSManager nmsManager;
 
     private final Map<UUID, ItemStack[]> playerItemsCache = new HashMap<>();
     private final Map<UUID, ItemStack[]> playerArmorCache = new HashMap<>();
@@ -34,7 +34,7 @@ public class SimpleStaffModeManager implements StaffModeManager {
         player.setFlying(true);
         savePlayerItems(player);
         giveStaffItemsToPlayer(player);
-        nmsSetup.getNMSHandler().sendActionBar(player,
+        nmsManager.getNMSHandler().sendActionBar(player,
                 messages.getString("staff-mode.commands.mode.action-bar-enabled"));
         staffModeCache.add(player.getUniqueId());
     }
@@ -46,7 +46,7 @@ public class SimpleStaffModeManager implements StaffModeManager {
         player.setAllowFlight(false);
         toggleVanish(player);
         givePlayerItems(player);
-        nmsSetup.getNMSHandler().sendActionBar(player,
+        nmsManager.getNMSHandler().sendActionBar(player,
                 messages.getString("staff-mode.commands.mode.action-bar-disabled"));
         staffModeCache.remove(player.getUniqueId());
     }

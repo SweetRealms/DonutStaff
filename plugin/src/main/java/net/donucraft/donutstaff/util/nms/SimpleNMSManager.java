@@ -14,7 +14,6 @@ public class SimpleNMSManager implements NMSManager {
         serverVersion = Bukkit.getServer().getClass().getPackage().getName().split(Pattern.quote("."))[3];
     }
 
-
     @Override
     public void enableNMS() {
         switch (serverVersion) {

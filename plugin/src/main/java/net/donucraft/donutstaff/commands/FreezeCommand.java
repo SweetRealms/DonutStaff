@@ -20,9 +20,11 @@ public class FreezeCommand implements CommandClass {
     public boolean onFreezeCommand(@Sender Player player, Player target) {
         if (staffModeHandler.isPlayerFrozen(target)) {
             staffModeHandler.unFreezePlayer(target);
+            player.sendMessage(messages.getString("player.frozen-disabled.freezer")
+                    .replace("%player_name%", target.getName()));
             return true;
         }
-        player.sendMessage(messages.getString("player.freezer")
+        player.sendMessage(messages.getString("player.frozen-enabled.freezer")
                 .replace("%player_name%", target.getName()));
         staffModeHandler.freezePlayer(target);
 
