@@ -6,6 +6,7 @@ import me.yushust.inject.key.TypeReference;
 import net.donucraft.DonutStaff;
 import net.donucraft.cache.FreezeCache;
 import net.donucraft.cache.StaffChatCache;
+import net.donucraft.cache.StaffModeCache;
 import net.donucraft.files.FileCreator;
 import net.donucraft.files.FileMatcher;
 import net.donucraft.staffmode.SimpleStaffModeHandler;
@@ -44,6 +45,7 @@ public class MainModule implements Module {
 
         binder.bind(new TypeReference<Cache<UUID>>(){}).named("freeze-cache").to(FreezeCache.class).singleton();
         binder.bind(new TypeReference<Cache<UUID>>(){}).named("staff-chat-cache").to(StaffChatCache.class).singleton();
+        binder.bind(new TypeReference<Cache<UUID>>(){}).named("staff-mode-cache").to(StaffModeCache.class).singleton();
 
 
     }

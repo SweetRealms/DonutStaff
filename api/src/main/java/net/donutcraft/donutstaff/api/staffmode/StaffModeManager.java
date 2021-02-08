@@ -9,8 +9,6 @@ public interface StaffModeManager {
 
     void enableStaffMode(Player player);
 
-    Set<UUID> getStaffPlayers();
-
     void disableStaffMode(Player player);
 
     void toggleVanish(Player player);

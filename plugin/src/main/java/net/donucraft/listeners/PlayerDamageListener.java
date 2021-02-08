@@ -31,25 +31,24 @@ public class PlayerDamageListener implements Listener {
     }
 
     @EventHandler
-    public void onPlayerDamageByEntityEvent(EntityDamageByEntityEvent event) {
+    public void onPlayerDamageEntity(EntityDamageByEntityEvent event) {
+        if (event.getEntity() == null) {
+            return;
+        }
         if (!(event.getEntity() instanceof Player)) {
             return;
         }
+        if (!(event.getDamager() instanceof Player)) {
+            return;
+        }
+        Player player = (Player) event.getDamager();
+        Player player1 = (Player) event.getEntity();
 
-        Player player = (Player) event.getEntity();
         if (freezeCache.exists(player.getUniqueId()) || staffModeManager.isOnStaffMode(player)) {
             event.setCancelled(true);
-        }
-    }
-
-    @EventHandler
-    public void onpPlayerDamageByBlockEvent(EntityDamageByBlockEvent event) {
-        if (!(event.getEntity() instanceof Player)) {
             return;
         }
-
-        Player player = (Player) event.getEntity();
-        if (freezeCache.exists(player.getUniqueId()) || staffModeManager.isOnStaffMode(player)) {
+        if (freezeCache.exists(player1.getUniqueId()) || staffModeManager.isOnStaffMode(player1)) {
             event.setCancelled(true);
         }
     }

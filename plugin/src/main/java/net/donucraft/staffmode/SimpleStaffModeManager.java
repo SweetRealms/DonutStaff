@@ -2,6 +2,7 @@ package net.donucraft.staffmode;
 
 import net.donucraft.DonutStaff;
 import net.donucraft.files.FileCreator;
+import net.donutcraft.donutstaff.api.cache.Cache;
 import net.donutcraft.donutstaff.api.staffmode.StaffModeManager;
 
 import org.bukkit.Bukkit;
@@ -18,14 +19,10 @@ public class SimpleStaffModeManager implements StaffModeManager {
 
     @Inject @Named("messages") private FileCreator messages;
     @Inject private DonutStaff donutStaff;
+    @Inject @Named("staff-mode-cache") private Cache<UUID> staffModeCache;
 
-    private final Set<UUID> staffModeCache;
     private final Map<UUID, ItemStack[]> playerItemsCache = new HashMap<>();
     private final Map<UUID, ItemStack[]> playerArmorCache = new HashMap<>();
-
-    public SimpleStaffModeManager() {
-        staffModeCache = new HashSet<>();
-    }
 
     @Override
     public void enableStaffMode(Player player) {
@@ -36,11 +33,6 @@ public class SimpleStaffModeManager implements StaffModeManager {
         savePlayerItems(player);
         giveStaffItemsToPlayer(player);
         staffModeCache.add(player.getUniqueId());
-    }
-
-    @Override
-    public Set<UUID> getStaffPlayers() {
-        return staffModeCache;
     }
 
     @Override
@@ -109,6 +101,6 @@ public class SimpleStaffModeManager implements StaffModeManager {
 
     @Override
     public boolean isOnStaffMode(Player player) {
-        return staffModeCache.contains(player.getUniqueId());
+        return staffModeCache.exists(player.getUniqueId());
     }
 }

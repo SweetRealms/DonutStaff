@@ -20,7 +20,7 @@ public class PlayerInteractListener implements Listener {
     public void onPlayerInteractEvent(PlayerInteractEvent event) {
         Player player = event.getPlayer();
 
-        if (freezeCache.exists(player.getUniqueId())) {
+        if (freezeCache.exists(player.getUniqueId()) || staffModeManager.isOnStaffMode(player)) {
             event.setCancelled(true);
         }
 

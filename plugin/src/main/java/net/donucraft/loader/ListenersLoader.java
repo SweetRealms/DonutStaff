@@ -4,7 +4,6 @@ import net.donucraft.DonutStaff;
 import net.donucraft.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryClickEvent;
 
 import javax.inject.Inject;
 
@@ -19,6 +18,8 @@ public class ListenersLoader implements Loader {
     @Inject private PlayerItemDropListener playerItemDropListener;
     @Inject private PlayerPickupItemListener playerPickupItemListener;
     @Inject private PlayerDamageListener playerDamageListener;
+    @Inject private BlockBreakListener blockBreakListener;
+    @Inject private BlockPlaceListener blockPlaceListener;
 
     @Override
     public void load() {
@@ -30,7 +31,9 @@ public class ListenersLoader implements Loader {
             inventoryClickListener,
             playerItemDropListener,
             playerPickupItemListener,
-            playerDamageListener
+            playerDamageListener,
+            blockBreakListener,
+            blockPlaceListener
         );
     }
 
