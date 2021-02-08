@@ -10,10 +10,7 @@ import me.fixeddev.commandflow.bukkit.BukkitCommandManager;
 import me.fixeddev.commandflow.bukkit.factory.BukkitModule;
 import me.fixeddev.commandflow.command.Command;
 import net.donucraft.DonutStaff;
-import net.donucraft.commands.FakeLeaveCommand;
-import net.donucraft.commands.FreezeCommand;
-import net.donucraft.commands.StaffChatCommand;
-import net.donucraft.commands.StaffModeCommand;
+import net.donucraft.commands.*;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -26,6 +23,7 @@ public class CommandsLoader implements Loader {
     @Inject private StaffChatCommand staffChatCommand;
     @Inject private FreezeCommand freezeCommand;
     @Inject private FakeLeaveCommand fakeLeaveCommand;
+    @Inject private ClearChatCommand clearChatCommand;
 
     @Override
     public void load() {
@@ -41,6 +39,7 @@ public class CommandsLoader implements Loader {
         commandList.addAll(annotatedCommandTreeBuilder.fromClass(staffChatCommand));
         commandList.addAll(annotatedCommandTreeBuilder.fromClass(freezeCommand));
         commandList.addAll(annotatedCommandTreeBuilder.fromClass(fakeLeaveCommand));
+        commandList.addAll(annotatedCommandTreeBuilder.fromClass(clearChatCommand));
 
         commandManager.registerCommands(commandList);
     }
