@@ -12,12 +12,30 @@
 
     <artifactId>donutstaff-versions</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>net.donutcraft</groupId>
+            <artifactId>donutstaff-api</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
     <modules>
         <module>v1_8_R3</module>
+        <module>v1_9_R2</module>
+        <module>v1_10_R1</module>
+        <module>v1_11_R1</module>
+        <module>v1_12_R1</module>
+        <module>v1_13_R2</module>
+        <module>v1_14_R1</module>
+        <module>v1_15_R1</module>
+        <module>v1_16_R1</module>
+        <module>v1_16_R3</module>
     </modules>
 
 </project>
