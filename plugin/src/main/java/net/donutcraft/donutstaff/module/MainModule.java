@@ -42,7 +42,7 @@ public class MainModule implements Module {
         binder.bind(DonutStaff.class).toInstance(donutStaff);
         binder.bind(Plugin.class).to(DonutStaff.class);
 
-        binder.bind(NMSManager.class).to(SimpleNMSManager.class);
+        binder.bind(NMSManager.class).to(SimpleNMSManager.class).singleton();
 
         binder.bind(StaffModeManager.class).to(SimpleStaffModeManager.class);
         binder.bind(StaffModeHandler.class).to(SimpleStaffModeHandler.class);

@@ -6,16 +6,12 @@ import org.bukkit.Bukkit;
 import java.util.regex.Pattern;
 
 public class SimpleNMSManager implements NMSManager {
-    private final String serverVersion;
-
+    private String serverVersion;
     private NMSHandler nmsHandler;
-
-    public SimpleNMSManager() {
-        serverVersion = Bukkit.getServer().getClass().getPackage().getName().split(Pattern.quote("."))[3];
-    }
 
     @Override
     public void enableNMS() {
+        serverVersion = Bukkit.getServer().getClass().getPackage().getName().split(Pattern.quote("."))[3];
         switch (serverVersion) {
 
             case "v1_8_R3":
