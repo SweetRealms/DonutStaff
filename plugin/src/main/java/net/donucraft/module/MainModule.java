@@ -11,6 +11,8 @@ import net.donucraft.files.FileCreator;
 import net.donucraft.files.FileMatcher;
 import net.donucraft.staffmode.SimpleStaffModeHandler;
 import net.donucraft.staffmode.SimpleStaffModeManager;
+import net.donucraft.util.nms.NMSSetup;
+import net.donucraft.util.nms.NMSSetupImpl;
 import net.donutcraft.donutstaff.api.cache.Cache;
 import net.donutcraft.donutstaff.api.staffmode.StaffModeHandler;
 import net.donutcraft.donutstaff.api.staffmode.StaffModeManager;
@@ -47,6 +49,6 @@ public class MainModule implements Module {
         binder.bind(new TypeReference<Cache<UUID>>(){}).named("staff-chat-cache").to(StaffChatCache.class).singleton();
         binder.bind(new TypeReference<Cache<UUID>>(){}).named("staff-mode-cache").to(StaffModeCache.class).singleton();
 
-
+        binder.bind(NMSSetup.class).to(NMSSetupImpl.class);
     }
 }

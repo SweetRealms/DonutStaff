@@ -46,6 +46,70 @@
             <artifactId>gui-core</artifactId>
             <version>2.0.0</version>
         </dependency>
+
+        <!--This adds the NMS-->
+
+        <dependency>
+            <groupId>net.donutcraft</groupId>
+            <artifactId>donutstaff-versions-v1_8_R3</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.donutcraft</groupId>
+            <artifactId>donutstaff-versions-v1_9_R2</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.donutcraft</groupId>
+            <artifactId>donutstaff-versions-v1_10_R1</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.donutcraft</groupId>
+            <artifactId>donutstaff-versions-v1_11_R1</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.donutcraft</groupId>
+            <artifactId>donutstaff-versions-v1_12_R1</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.donutcraft</groupId>
+            <artifactId>donutstaff-versions-v1_13_R2</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.donutcraft</groupId>
+            <artifactId>donutstaff-versions-v1_14_R1</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.donutcraft</groupId>
+            <artifactId>donutstaff-versions-v1_15_R1</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.donutcraft</groupId>
+            <artifactId>donutstaff-versions-v1_16_R1</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.donutcraft</groupId>
+            <artifactId>donutstaff-versions-v1_16_R3</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+
     </dependencies>
 
 </project>
