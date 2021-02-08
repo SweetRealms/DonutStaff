@@ -1,4 +1,4 @@
-main: net.donucraft.DonutStaff
+main: net.donucraft.donutstaff.DonutStaff
 name: DonutStaff
 version: ${project.version}
 author: SnakeAmazing
