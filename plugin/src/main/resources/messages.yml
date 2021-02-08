@@ -1,8 +1,15 @@
 #ASDASDASDASDASDASD
 player:
   freezer: "&a¡Has congelado a %player_name% con éxito!"
-  frozen-enabled: "&bHas sido congelado, no te muevas hasta que te revisen."
-  frozen-disabled: "&bAl parecer estás limpio, portate bien."
+  frozen-enabled:
+    - "&7----------"
+    - "&bHas sido congelado, no te muevas"
+    - "hasta que te revisen."
+    - "&7----------"
+  frozen-disabled:
+    - "&7----------"
+    - "&bAl parecer estás limpio, portate bien."
+    - "&7----------"
 
 staff-mode:
   commands:

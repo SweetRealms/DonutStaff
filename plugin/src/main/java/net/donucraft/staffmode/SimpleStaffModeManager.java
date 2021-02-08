@@ -77,10 +77,10 @@ public class SimpleStaffModeManager implements StaffModeManager {
     public void giveStaffItemsToPlayer(Player player) {
         ItemStack compass = ItemBuilder.newBuilder(Material.COMPASS, 1)
                 .setName(messages.getString("items.compass.name"))
-                .setLore(messages.getStringList("items.compass.name.lore"))
+                .setLore(messages.getStringList("items.compass.lore"))
                 .build();
 
-        ItemStack skull = ItemBuilder.newBuilder(Material.SKULL, 1, (byte) 3)
+        ItemStack skull = ItemBuilder.newBuilder(Material.SKULL, 1)
                 .setName(messages.getString("items.skull.name"))
                 .setLore(messages.getStringList("items.skull.lore"))
                 .build();
@@ -89,6 +89,7 @@ public class SimpleStaffModeManager implements StaffModeManager {
                 .setName(messages.getString("items.stick.name"))
                 .setLore(messages.getStringList("items.stick.lore"))
                 .build();
+
         player.getInventory().clear();
         player.getInventory().setItem(0, compass);
         player.getInventory().setItem(2, skull);

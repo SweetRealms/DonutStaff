@@ -19,13 +19,17 @@ public class SimpleStaffModeHandler implements StaffModeHandler {
 
     @Override
     public void freezePlayer(Player target) {
-        target.sendMessage(messages.getString("player.frozen-enabled"));
+        for (String line : messages.getStringList("player.frozen-enabled")) {
+            target.sendMessage(line);
+        }
         freezeCache.add(target.getUniqueId());
     }
 
     @Override
     public void unFreezePlayer(Player target) {
-        target.sendMessage(messages.getString("player.frozen-disabled"));
+        for (String line : messages.getStringList("player.frozen-disabled")) {
+            target.sendMessage(line);
+        }
         freezeCache.remove(target.getUniqueId());
     }
 

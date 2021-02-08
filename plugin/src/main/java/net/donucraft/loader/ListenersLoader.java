@@ -1,11 +1,10 @@
 package net.donucraft.loader;
 
 import net.donucraft.DonutStaff;
-import net.donucraft.listeners.PlayerChatListener;
-import net.donucraft.listeners.PlayerJoinListener;
-import net.donucraft.listeners.PlayerMoveListener;
+import net.donucraft.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
 
 import javax.inject.Inject;
 
@@ -15,13 +14,23 @@ public class ListenersLoader implements Loader {
     @Inject private PlayerChatListener playerChatListener;
     @Inject private PlayerMoveListener playerMoveListener;
     @Inject private PlayerJoinListener playerJoinListener;
+    @Inject private InventoryClickListener inventoryClickListener;
+    @Inject private InventoryOpenListener inventoryOpenListener;
+    @Inject private PlayerItemDropListener playerItemDropListener;
+    @Inject private PlayerPickupItemListener playerPickupItemListener;
+    @Inject private PlayerDamageListener playerDamageListener;
 
     @Override
     public void load() {
         registerListeners(
             playerChatListener,
             playerMoveListener,
-            playerJoinListener
+            playerJoinListener,
+            inventoryOpenListener,
+            inventoryClickListener,
+            playerItemDropListener,
+            playerPickupItemListener,
+            playerDamageListener
         );
     }
 
