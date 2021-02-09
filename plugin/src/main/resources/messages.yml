@@ -1,4 +1,14 @@
-#ASDASDASDASDASDASD
+#LANG FILE, HERE YOU CAN CUSTOMIZE ALL THE MESSAGES BY YOUR OWN.
+#THE MESSAGES THAT HAVE A `-` ARE LISTS, JUST REMOVE THEM IF YOU WANT A SHORTER MESSAGE
+#EXAMPLE:
+#   - "THIS IS MY SHORTER LIST"
+
+commons:
+  only-player-sender: "&cSolo un jugador puede ejecutar el comando."
+  no-permission: "&cNo tienes permisos para ejecutar este comando."
+  invalid-argument: "&cEl argumento introducido no es valido."
+
+
 player:
   frozen-enabled:
     freezer: "&a¡Has congelado a %player_name% con éxito!"
@@ -31,7 +41,7 @@ staff-mode:
     enabled: "&aHas activado el chat de staff correctamente."
     disabled: "&cHas desactivado el chat de staff correctamente."
 
-#ITEMS
+#ITEMS FOR THE STAFF MODE
 items:
   compass:
     name: "&aASDA"

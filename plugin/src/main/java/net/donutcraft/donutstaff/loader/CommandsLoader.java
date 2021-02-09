@@ -9,8 +9,10 @@ import me.fixeddev.commandflow.annotated.part.defaults.DefaultsModule;
 import me.fixeddev.commandflow.bukkit.BukkitCommandManager;
 import me.fixeddev.commandflow.bukkit.factory.BukkitModule;
 import me.fixeddev.commandflow.command.Command;
+import me.fixeddev.commandflow.translator.DefaultTranslator;
 import net.donutcraft.donutstaff.DonutStaff;
 import net.donutcraft.donutstaff.commands.*;
+import net.donutcraft.donutstaff.flow.CustomTranslationProvider;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -33,6 +35,7 @@ public class CommandsLoader implements Loader {
 
         AnnotatedCommandTreeBuilder annotatedCommandTreeBuilder = new AnnotatedCommandTreeBuilderImpl(partInjector);
         CommandManager commandManager = new BukkitCommandManager(donutStaff.getName());
+        commandManager.setTranslator(new DefaultTranslator(new CustomTranslationProvider()));
 
         List<Command> commandList = new ArrayList<>();
         commandList.addAll(annotatedCommandTreeBuilder.fromClass(staffModeCommand));
