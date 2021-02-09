@@ -8,6 +8,7 @@ import net.minecraft.server.v1_9_R2.Packet;
 import net.minecraft.server.v1_9_R2.PacketPlayOutTitle;
 import org.bukkit.craftbukkit.v1_9_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 
 public class NMSHandler_1_9_R2 implements NMSHandler {
     @Override
@@ -33,4 +34,15 @@ public class NMSHandler_1_9_R2 implements NMSHandler {
     public void sendPacket(Player player, Object object) {
         ((CraftPlayer)player).getHandle().playerConnection.sendPacket((Packet) object);
     }
+
+    @Override
+    public void hidePlayer(Player user, Player staff) {
+        user.hidePlayer(staff);
+    }
+
+    @Override
+    public void showPlayer(Player user, Player staff) {
+        user.showPlayer(staff);
+    }
+
 }

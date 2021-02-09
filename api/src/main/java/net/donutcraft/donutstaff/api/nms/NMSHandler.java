@@ -8,4 +8,8 @@ public interface NMSHandler {
     void sendActionBar(Player player, String message);
 
     void sendPacket(Player player, Object object);
+
+    void hidePlayer(Player user, Player staff);
+
+    void showPlayer(Player user, Player staff);
 }

@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPickupItemEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -17,11 +18,9 @@ public class PlayerPickupItemListener implements Listener {
     @Inject private StaffModeManager staffModeManager;
 
     @EventHandler
-    public void onPlayerPickupItemEvent(EntityPickupItemEvent event) {
-        if (!(event.getEntity() instanceof Player)) {
-            return;
-        }
-        Player player = (Player) event.getEntity();
+    public void onPlayerPickupItemEvent(PlayerPickupItemEvent event) {
+        Player player = event.getPlayer();
+
         if (freezeCache.exists(player.getUniqueId()) || staffModeManager.isOnStaffMode(player)) {
             event.setCancelled(true);
         }

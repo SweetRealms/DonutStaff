@@ -17,4 +17,14 @@ public class NMSHandler_1_11_R1 implements NMSHandler {
 
     @Override
     public void sendPacket(Player player, Object object) {}
+
+    @Override
+    public void hidePlayer(Player user, Player staff) {
+        user.hidePlayer(staff);
+    }
+
+    @Override
+    public void showPlayer(Player user, Player staff) {
+        user.showPlayer(staff);
+    }
 }

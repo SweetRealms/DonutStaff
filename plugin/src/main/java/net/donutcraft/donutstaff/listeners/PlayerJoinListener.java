@@ -1,7 +1,7 @@
 package net.donutcraft.donutstaff.listeners;
 
-import net.donutcraft.donutstaff.DonutStaff;
 import net.donutcraft.donutstaff.api.cache.Cache;
+import net.donutcraft.donutstaff.util.nms.NMSManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -14,14 +14,18 @@ import java.util.UUID;
 
 public class PlayerJoinListener implements Listener {
 
-    @Inject private DonutStaff donutStaff;
     @Inject @Named("staff-mode-cache") private Cache<UUID> staffModeCache;
+    @Inject private NMSManager nmsManager;
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+        if (player.hasPermission("donutstaff.seestaff")) {
+            return;
+        }
+
         for (UUID uuid : staffModeCache.get()) {
-            player.hidePlayer(donutStaff, Bukkit.getPlayer(uuid));
+            nmsManager.getNMSHandler().hidePlayer(player, Bukkit.getPlayer(uuid));
         }
     }
 }

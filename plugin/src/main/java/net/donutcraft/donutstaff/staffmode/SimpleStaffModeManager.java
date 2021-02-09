@@ -1,6 +1,5 @@
 package net.donutcraft.donutstaff.staffmode;
 
-import net.donutcraft.donutstaff.DonutStaff;
 import net.donutcraft.donutstaff.files.FileCreator;
 import net.donutcraft.donutstaff.util.nms.NMSManager;
 import net.donutcraft.donutstaff.api.cache.Cache;
@@ -19,7 +18,6 @@ import java.util.*;
 public class SimpleStaffModeManager implements StaffModeManager {
 
     @Inject @Named("messages") private FileCreator messages;
-    @Inject private DonutStaff donutStaff;
     @Inject @Named("staff-mode-cache") private Cache<UUID> staffModeCache;
     @Inject private NMSManager nmsManager;
 
@@ -55,12 +53,12 @@ public class SimpleStaffModeManager implements StaffModeManager {
     public void toggleVanish(Player player) {
         if (isOnStaffMode(player)) {
             for (Player player1 : Bukkit.getOnlinePlayers()) {
-                player1.showPlayer(donutStaff, player);
+                nmsManager.getNMSHandler().showPlayer(player1, player);
             }
             return;
         }
         for (Player player1 : Bukkit.getOnlinePlayers()) {
-            player1.hidePlayer(donutStaff, player);
+            nmsManager.getNMSHandler().hidePlayer(player1, player);
         }
 
     }

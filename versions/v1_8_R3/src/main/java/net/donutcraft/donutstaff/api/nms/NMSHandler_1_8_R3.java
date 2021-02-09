@@ -30,4 +30,14 @@ public class NMSHandler_1_8_R3 implements NMSHandler {
     public void sendPacket(Player player, Object object) {
         ((CraftPlayer)player).getHandle().playerConnection.sendPacket((Packet) object);
     }
+
+    @Override
+    public void hidePlayer(Player user, Player staff) {
+        user.hidePlayer(staff);
+    }
+
+    @Override
+    public void showPlayer(Player user, Player staff) {
+        user.showPlayer(staff);
+    }
 }
