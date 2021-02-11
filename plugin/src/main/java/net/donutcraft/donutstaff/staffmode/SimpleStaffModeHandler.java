@@ -50,12 +50,14 @@ public class SimpleStaffModeHandler implements StaffModeHandler {
     @Override
     public void toggleStaffChat(Player player) {
         if (!isPlayerInStaffChat(player)) {
-            player.sendMessage(messages.getString("staff-mode.staff-chat.enabled"));
+            player.sendMessage(messages.getString("staff-mode.staff-chat.enabled")
+                    .replace("%prefix%", messages.getString("commons.global-prefix")));
             staffChatCache.add(player.getUniqueId());
             return;
         }
         staffChatCache.remove(player.getUniqueId());
-        player.sendMessage(messages.getString("staff-mode.staff-chat.disabled"));
+        player.sendMessage(messages.getString("staff-mode.staff-chat.disabled")
+                .replace("%prefix%", messages.getString("commons.global-prefix")));
     }
 
     @Override
@@ -69,6 +71,7 @@ public class SimpleStaffModeHandler implements StaffModeHandler {
                 .replace("%player_name%", player.getName()));
     }
 
+    // IN PROGRESS
     @Override
     public void saveDeathPlayerInventory(Player player) {
         for (ItemStack itemStack : player.getInventory()) {

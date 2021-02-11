@@ -26,7 +26,8 @@ public class SimpleStaffModeManager implements StaffModeManager {
 
     @Override
     public void enableStaffMode(Player player) {
-        player.sendMessage(messages.getString("staff-mode.commands.mode.enabled"));
+        player.sendMessage(messages.getString("staff-mode.commands.mode.enabled")
+                .replace("%prefix%", messages.getString("commons.global-prefix")));
         toggleVanish(player);
         player.setAllowFlight(true);
         player.setFlying(true);
@@ -39,7 +40,8 @@ public class SimpleStaffModeManager implements StaffModeManager {
 
     @Override
     public void disableStaffMode(Player player) {
-        player.sendMessage(messages.getString("staff-mode.commands.mode.disabled"));
+        player.sendMessage(messages.getString("staff-mode.commands.mode.disabled")
+                .replace("%prefix%", messages.getString("commons.global-prefix")));
         player.setFlying(false);
         player.setAllowFlight(false);
         toggleVanish(player);

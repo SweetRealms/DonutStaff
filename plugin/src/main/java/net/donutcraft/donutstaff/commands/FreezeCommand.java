@@ -21,11 +21,13 @@ public class FreezeCommand implements CommandClass {
         if (staffModeHandler.isPlayerFrozen(target)) {
             staffModeHandler.unFreezePlayer(target);
             player.sendMessage(messages.getString("player.frozen-disabled.freezer")
-                    .replace("%player_name%", target.getName()));
+                    .replace("%player_name%", target.getName())
+                    .replace("%prefix%", messages.getString("commons.global-prefix")));
             return true;
         }
         player.sendMessage(messages.getString("player.frozen-enabled.freezer")
-                .replace("%player_name%", target.getName()));
+                .replace("%player_name%", target.getName())
+                .replace("%prefix%", messages.getString("commons.global-prefix")));
         staffModeHandler.freezePlayer(target);
 
         return true;

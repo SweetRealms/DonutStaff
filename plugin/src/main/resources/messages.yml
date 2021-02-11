@@ -4,50 +4,49 @@
 #   - "THIS IS MY SHORTER LIST"
 
 commons:
-  only-player-sender: "&cSolo un jugador puede ejecutar el comando."
-  not-enough-permissions: "&cNo tienes permisos para ejecutar este comando."
-  invalid-argument: "&cEl argumento introducido no es valido."
-  offline-player: "&cEl jugador no está conectado."
-  unkown-sender: "&cNo se reconoce el nombre del jugador."
+  global-prefix: "&bStaffMode &7>"
+  only-player-sender: "%prefix% &cSolo un jugador puede ejecutar el comando."
+  not-enough-permissions: "%prefix% &cNo tienes permisos para ejecutar este comando."
+  invalid-argument: "%prefix% &cEl argumento introducido no es valido."
+  offline-player: "%prefix% &cEl jugador no está conectado."
+  unkown-sender: "%prefix% &cNo se reconoce el nombre del jugador."
   args:
     prefix: "&9Uso: "
     freeze:
       usage: "&b/freeze <player>"
 
-
-
-
 player:
   frozen-enabled:
-    freezer: "&a¡Has congelado a %player_name% con éxito!"
+    freezer: "%prefix% &a¡Has congelado a %player_name% con éxito!"
     target:
-      - "&7----------"
+      - "&7&m---------------------------"
       - "&bHas sido congelado, no te muevas"
-      - "hasta que te revisen."
-      - "&7----------"
+      - "&bhasta que te revisen."
+      - "&7&m---------------------------"
     title: "&cHAS SIDO CONGELADO"
     subtitle: "&4NO TE MUEVAS"
   frozen-disabled:
-    freezer: "&a¡Has descongelado a %player_name% con éxito!"
+    freezer: "%prefix% &a¡Has descongelado a %player_name% con éxito!"
     target:
-      - "&7----------"
+      - "&7&m---------------------------"
       - "&bAl parecer estás limpio, portate bien."
-      - "&7----------"
+      - "&7&m---------------------------"
     title: "&bHAS SIDO DESCONGELADO"
     subtitle: "&9ERES LIBRE"
 
 staff-mode:
   commands:
     mode:
-      enabled: "&aHas activado el modo de staff."
-      disabled: "&cHas desactivado el modo de staff."
+      enabled: "%prefix% &aHas activado el modo de staff."
+      disabled: "%prefix% &cHas desactivado el modo de staff."
       action-bar-enabled: "&7| &bHas activado el modo de Staff &7|"
       action-bar-disabled: "&7| &bHas desactivado el modo de Staff &7|"
-    fake-leave: "&eEl jugador %player_name% se ha desconectado."
+    fake-leave: "%prefix% &eEl jugador %player_name% se ha desconectado."
+    clear-chat: "%prefix% &9El chat ha sido limpiado por un administrador."
   staff-chat:
     prefix: "&9SC &7|| &b%player_name% &7> &e"
-    enabled: "&aHas activado el chat de staff correctamente."
-    disabled: "&cHas desactivado el chat de staff correctamente."
+    enabled: "%prefix% &aHas activado el chat de staff correctamente."
+    disabled: "%prefix% &cHas desactivado el chat de staff correctamente."
 
 #ITEMS FOR THE STAFF MODE
 items:
