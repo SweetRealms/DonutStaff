@@ -13,6 +13,7 @@ import me.fixeddev.commandflow.translator.DefaultTranslator;
 import net.donutcraft.donutstaff.DonutStaff;
 import net.donutcraft.donutstaff.commands.*;
 import net.donutcraft.donutstaff.flow.CustomTranslationProvider;
+import net.donutcraft.donutstaff.flow.CustomUsageBuilder;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -26,6 +27,8 @@ public class CommandsLoader implements Loader {
     @Inject private FreezeCommand freezeCommand;
     @Inject private FakeLeaveCommand fakeLeaveCommand;
     @Inject private ClearChatCommand clearChatCommand;
+    @Inject private CustomTranslationProvider customTranslationProvider;
+    @Inject private CustomUsageBuilder customUsageBuilder;
 
     @Override
     public void load() {
@@ -35,7 +38,8 @@ public class CommandsLoader implements Loader {
 
         AnnotatedCommandTreeBuilder annotatedCommandTreeBuilder = new AnnotatedCommandTreeBuilderImpl(partInjector);
         CommandManager commandManager = new BukkitCommandManager(donutStaff.getName());
-        commandManager.setTranslator(new DefaultTranslator(new CustomTranslationProvider()));
+        commandManager.setTranslator(new DefaultTranslator(customTranslationProvider));
+        commandManager.setUsageBuilder(customUsageBuilder);
 
         List<Command> commandList = new ArrayList<>();
         commandList.addAll(annotatedCommandTreeBuilder.fromClass(staffModeCommand));

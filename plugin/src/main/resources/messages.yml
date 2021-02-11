@@ -5,8 +5,16 @@
 
 commons:
   only-player-sender: "&cSolo un jugador puede ejecutar el comando."
-  no-permission: "&cNo tienes permisos para ejecutar este comando."
+  not-enough-permissions: "&cNo tienes permisos para ejecutar este comando."
   invalid-argument: "&cEl argumento introducido no es valido."
+  offline-player: "&cEl jugador no está conectado."
+  unkown-sender: "&cNo se reconoce el nombre del jugador."
+  args:
+    prefix: "&9Uso: "
+    freeze:
+      usage: "&b/freeze <player>"
+
+
 
 
 player:

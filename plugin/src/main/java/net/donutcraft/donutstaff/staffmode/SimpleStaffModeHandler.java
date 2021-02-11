@@ -6,7 +6,9 @@ import net.donutcraft.donutstaff.api.cache.Cache;
 import net.donutcraft.donutstaff.api.staffmode.StaffModeHandler;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -65,6 +67,16 @@ public class SimpleStaffModeHandler implements StaffModeHandler {
     public void fakeLeave(Player player) {
         Bukkit.broadcastMessage(messages.getString("staff-mode.commands.fake-leave")
                 .replace("%player_name%", player.getName()));
+    }
+
+    @Override
+    public void saveDeathPlayerInventory(Player player) {
+        for (ItemStack itemStack : player.getInventory()) {
+            if (itemStack == null || itemStack.getType() == Material.AIR) {
+                return;
+            }
+
+        }
     }
 
     @Override

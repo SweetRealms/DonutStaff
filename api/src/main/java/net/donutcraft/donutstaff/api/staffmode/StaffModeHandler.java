@@ -16,6 +16,8 @@ public interface StaffModeHandler {
 
     void fakeLeave(Player player);
 
+    void saveDeathPlayerInventory(Player player);
+
     void randomTp(Player player);
 
 }
