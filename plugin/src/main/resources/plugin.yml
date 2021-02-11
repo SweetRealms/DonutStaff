@@ -2,3 +2,4 @@ main: net.donutcraft.donutstaff.DonutStaff
 name: DonutStaff
 version: ${project.version}
 author: SnakeAmazing
+api-version: 1.13

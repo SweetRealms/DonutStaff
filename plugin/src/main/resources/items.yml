@@ -1,0 +1,20 @@
+# ITEMS FOR THE STAFF MODE
+
+items:
+  compass:
+    name: "&cTeletransporte Aleatorio"
+    lore:
+      - "&7Click derecho para teletransportarte"
+      - "&7A un jugador aleatorio."
+  stick:
+    name: "&6Palo de Knockback"
+    lore:
+      - "&7Usalo para descubrir si el jugador"
+      - "&7Está usando antiknockback."
+  vansih-on:
+    name: "&aVanish Activado"
+    lore:
+      - "&7Click derecho para desactivarlo."
+  vanish-off:
+    name: "&cVanish Desactivado"
+      - "&7Click derecho para activarlo."

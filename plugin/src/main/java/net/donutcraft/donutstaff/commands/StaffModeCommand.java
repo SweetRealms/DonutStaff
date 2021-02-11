@@ -11,7 +11,8 @@ import javax.inject.Inject;
 @Command(names = {"staff", "sm", "mod"}, desc = "Enable staff mode.", permission = "donutcraft.staffmode")
 public class StaffModeCommand implements CommandClass {
 
-    @Inject private StaffModeManager staffModeManager;
+    @Inject
+    private StaffModeManager staffModeManager;
 
     @Command(names = "")
     public boolean onStaffModeCommand(@Sender Player player) {

@@ -35,6 +35,8 @@ player:
     subtitle: "&9ERES LIBRE"
 
 staff-mode:
+  bypass: "%prefix% &cNo puedes interactuar con este jugador."
+  random-tp: "%prefix% &aTe has telentrasportado a %player%_name."
   commands:
     mode:
       enabled: "%prefix% &aHas activado el modo de staff."
@@ -47,19 +49,3 @@ staff-mode:
     prefix: "&9SC &7|| &b%player_name% &7> &e"
     enabled: "%prefix% &aHas activado el chat de staff correctamente."
     disabled: "%prefix% &cHas desactivado el chat de staff correctamente."
-
-#ITEMS FOR THE STAFF MODE
-items:
-  compass:
-    name: "&aASDA"
-    lore:
-      - "&cASD"
-  skull:
-    name: "&cASDASD"
-    lore:
-      - "&bASd"
-  stick:
-    name: "&6Un palo"
-    lore:
-      - "&cJoder un Palo"
-      - "&cEncima táctico"

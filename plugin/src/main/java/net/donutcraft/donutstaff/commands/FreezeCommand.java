@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-@Command(names = "freeze", desc = "Freeze a player.", permission = "donutcraft.freeze")
+@Command(names = "freeze", desc = "Freeze a player.", permission = "donutstaff.freeze")
 public class FreezeCommand implements CommandClass {
 
     @Inject private StaffModeHandler staffModeHandler;
@@ -18,6 +18,13 @@ public class FreezeCommand implements CommandClass {
 
     @Command(names = "")
     public boolean onFreezeCommand(@Sender Player player, Player target) {
+
+        if (target.hasPermission("donutstaff.bypass")) {
+            player.sendMessage(messages.getString("staff-mode.bypass")
+                    .replace("%prefix%", messages.getString("commons.global-prefix")));
+            return true;
+        }
+
         if (staffModeHandler.isPlayerFrozen(target)) {
             staffModeHandler.unFreezePlayer(target);
             player.sendMessage(messages.getString("player.frozen-disabled.freezer")

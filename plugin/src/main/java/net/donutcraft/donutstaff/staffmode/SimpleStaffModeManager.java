@@ -78,20 +78,20 @@ public class SimpleStaffModeManager implements StaffModeManager {
                 .setLore(messages.getStringList("items.compass.lore"))
                 .build();
 
-        ItemStack skull = ItemBuilder.newBuilder(Material.SKULL, 1)
+        ItemStack vansih = ItemBuilder.newBuilder(Material.WOOL, 1)
                 .setName(messages.getString("items.skull.name"))
                 .setLore(messages.getStringList("items.skull.lore"))
                 .build();
 
-        ItemStack invsee = ItemBuilder.newBuilder(Material.STICK, 1)
+        ItemStack knockback = ItemBuilder.newBuilder(Material.STICK, 1)
                 .setName(messages.getString("items.stick.name"))
                 .setLore(messages.getStringList("items.stick.lore"))
                 .build();
 
         player.getInventory().clear();
         player.getInventory().setItem(0, compass);
-        player.getInventory().setItem(2, skull);
-        player.getInventory().setItem(4, invsee);
+        player.getInventory().setItem(2, vansih);
+        player.getInventory().setItem(4, knockback);
 
     }
 

@@ -38,7 +38,8 @@ public class MainModule implements Module {
 
         FileMatcher fileMatcher = new FileMatcher()
                 //.bind("config", new FileCreator(donutStaff, "config"))
-                .bind("messages", new FileCreator(donutStaff, "messages"));
+                .bind("messages", new FileCreator(donutStaff, "messages"))
+                .bind("items", new FileCreator(donutStaff, "items"));
 
 
         binder.install(fileMatcher.build());
