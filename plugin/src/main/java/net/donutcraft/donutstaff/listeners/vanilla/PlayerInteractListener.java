@@ -13,6 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -41,17 +42,19 @@ public class PlayerInteractListener implements Listener {
         if (!itemStack.hasItemMeta()) {
             return;
         }
-        if (itemStack.getItemMeta().getDisplayName().equals(items.getString("items.random-tp.name"))) {
+        String itemDisplayName = itemStack.getItemMeta().getDisplayName();
+
+        if (itemDisplayName.equals(items.getString("items.random-tp.name"))) {
             Bukkit.getPluginManager().callEvent(new RandomTpEvent(player));
             event.setCancelled(true);
             return;
         }
-        if (itemStack.getItemMeta().getDisplayName().equals(items.getString("items.knock-back.name"))) {
+        if (itemDisplayName.equals(items.getString("items.knock-back.name"))) {
             Bukkit.getPluginManager().callEvent(new KnockbackItemEvent(player));
             return;
         }
-        if (itemStack.getItemMeta().getDisplayName().equals(items.getString("items.vanish-on.name"))
-        || itemStack.getItemMeta().getDisplayName().equals(items.getString("items.vanish-off.name"))) {
+        if (itemDisplayName.equals(items.getString("items.vanish-on.name")) ||
+                itemDisplayName.equals(items.getString("items.vanish-off.name"))) {
             Bukkit.getPluginManager().callEvent(new VanishChangeStateEvent(player));
             event.setCancelled(true);
         }

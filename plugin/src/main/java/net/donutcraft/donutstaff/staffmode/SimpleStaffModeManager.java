@@ -55,14 +55,21 @@ public class SimpleStaffModeManager implements StaffModeManager {
 
     @Override
     public void enableVanish(Player player) {
+        player.sendMessage(messages.getString("staff-mode.vanish-enabled")
+                .replace("%prefix%", messages.getString("commons.global-prefix")));
         vanishCache.add(player.getUniqueId());
         for (Player player1 : Bukkit.getOnlinePlayers()) {
+            if (player1.hasPermission("donutstaff.seestaff")) {
+                return;
+            }
             nmsManager.getNMSHandler().hidePlayer(player1, player);
         }
     }
 
     @Override
     public void disableVanish(Player player) {
+        player.sendMessage(messages.getString("staff-mode.vanish-disabled")
+                .replace("%prefix%", messages.getString("commons.global-prefix")));
         vanishCache.remove(player.getUniqueId());
         for (Player player1 : Bukkit.getOnlinePlayers()) {
             nmsManager.getNMSHandler().showPlayer(player1, player);

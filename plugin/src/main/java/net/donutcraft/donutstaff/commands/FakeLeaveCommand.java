@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 
 import javax.inject.Inject;
 
-@Command(names = "fakeleave", desc = "Fake a leave of a player", permission = "donutcraft.fakeleave")
+@Command(names = "fakeleave", desc = "Fake a leave of a player", permission = "donutstaff.fakeleave")
 public class FakeLeaveCommand implements CommandClass {
 
     @Inject private StaffModeHandler staffModeHandler;

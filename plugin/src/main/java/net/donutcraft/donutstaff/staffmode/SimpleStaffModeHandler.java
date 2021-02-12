@@ -86,10 +86,16 @@ public class SimpleStaffModeHandler implements StaffModeHandler {
     public void randomTp(Player player) {
         Random random = new Random();
         List<UUID> playerList = new ArrayList<>();
+
         for (Player player1 : Bukkit.getOnlinePlayers()) {
             playerList.add(player1.getUniqueId());
         }
         playerList.remove(player.getUniqueId());
+        if (playerList.size() < 1) {
+            player.sendMessage(messages.getString("staff-mode.not-enough-players")
+                    .replace("%prefix%", messages.getString("commons.global-prefix")));
+            return;
+        }
         int playerNumber = random.nextInt(playerList.size());
         Player target = Bukkit.getPlayer(playerList.get(playerNumber));
         player.teleport(target);

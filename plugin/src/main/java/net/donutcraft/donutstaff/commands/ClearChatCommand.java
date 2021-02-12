@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-@Command(names = {"clearchat", "chatclear", "cc"}, desc = "Clear the chat", permission = "donucraft.clearchat")
+@Command(names = {"clearchat", "chatclear", "cc"}, desc = "Clear the chat", permission = "donutstaff.clearchat")
 public class ClearChatCommand implements CommandClass {
 
     @Inject @Named("messages") private FileCreator messages;

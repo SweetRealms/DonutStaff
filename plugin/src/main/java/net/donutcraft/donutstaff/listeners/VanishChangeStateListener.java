@@ -36,9 +36,9 @@ public class VanishChangeStateListener implements Listener {
             return;
         }
 
-        ItemStack vanish_enabled = ItemBuilder.newBuilder(Material.RED_ROSE, 1)
-                .setName(items.getString("items.vanish-off.name"))
-                .setLore(items.getStringList("items.vanish-off.lore"))
+        ItemStack vanish_enabled = ItemBuilder.newBuilder(Material.YELLOW_FLOWER, 1)
+                .setName(items.getString("items.vanish-on.name"))
+                .setLore(items.getStringList("items.vanish-on.lore"))
                 .build();
 
         player.getInventory().setItem(2, vanish_enabled);

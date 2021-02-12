@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 
 import javax.inject.Inject;
 
-@Command(names = {"staff", "sm", "mod"}, desc = "Enable staff mode.", permission = "donutcraft.staffmode")
+@Command(names = {"staff", "sm", "mod"}, desc = "Enable staff mode.", permission = "donutstaff.staffmode")
 public class StaffModeCommand implements CommandClass {
 
     @Inject

@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 
 import javax.inject.Inject;
 
-@Command(names = {"staffchat", "sc"}, desc = "Enable staff chat.", permission = "donutcraft.staffchat")
+@Command(names = {"staffchat", "sc"}, desc = "Enable staff chat.", permission = "donutstaff.staffchat")
 public class StaffChatCommand implements CommandClass {
 
     @Inject private StaffModeHandler staffModeHandler;

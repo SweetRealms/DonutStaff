@@ -37,7 +37,10 @@ player:
 
 staff-mode:
   bypass: "%prefix% &cNo puedes interactuar con este jugador."
-  random-tp: "%prefix% &aTe has telentrasportado a %player%_name."
+  vanish-enabled: "%prefix% &aHas activado el vanish."
+  vanish-disabled: "%prefix% &cHas desactivado el vanish."
+  random-tp: "%prefix% &aTe has telentrasportado a %player_name%."
+  not-enough-players: "%prefix% &cNo hay suficientes jugadores."
   commands:
     mode:
       enabled: "%prefix% &aHas activado el modo de staff."
