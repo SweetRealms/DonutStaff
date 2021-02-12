@@ -1,7 +1,6 @@
 package net.donutcraft.donutstaff.loader;
 
 import net.donutcraft.donutstaff.DonutStaff;
-import net.donutcraft.donutstaff.api.event.KnockbackItemEvent;
 import net.donutcraft.donutstaff.listeners.KnockbackItemListener;
 import net.donutcraft.donutstaff.listeners.RandomTpListener;
 import net.donutcraft.donutstaff.listeners.VanishChangeStateListener;
