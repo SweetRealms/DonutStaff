@@ -18,7 +18,7 @@ import java.util.*;
 public class SimpleStaffModeManager implements StaffModeManager {
 
     @Inject @Named("messages") private FileCreator messages;
-    @Inject @Named("items") private FileCreator items;
+    @Inject @Named("items-file") private FileCreator items;
     @Inject @Named("staff-mode-cache") private Cache<UUID> staffModeCache;
     @Inject @Named("vanish-cache") private Cache<UUID> vanishCache;
     @Inject private NMSManager nmsManager;
@@ -77,9 +77,9 @@ public class SimpleStaffModeManager implements StaffModeManager {
 
     @Override
     public void giveStaffItemsToPlayer(Player player) {
-        ItemStack compass = ItemBuilder.newBuilder(Material.COMPASS, 1)
-                .setName(items.getString("items.compass.name"))
-                .setLore(items.getStringList("items.compass.lore"))
+        ItemStack random_tp = ItemBuilder.newBuilder(Material.COMPASS, 1)
+                .setName(items.getString("items.random-tp.name"))
+                .setLore(items.getStringList("items.random-tp.lore"))
                 .build();
 
         ItemStack vanish = ItemBuilder.newBuilder(Material.YELLOW_FLOWER, 1)
@@ -87,15 +87,15 @@ public class SimpleStaffModeManager implements StaffModeManager {
                 .setLore(items.getStringList("items.vanish-on.lore"))
                 .build();
 
-        ItemStack knockback = ItemBuilder.newBuilder(Material.STICK, 1)
-                .setName(items.getString("items.stick.name"))
-                .setLore(items.getStringList("items.stick.lore"))
+        ItemStack knock_back = ItemBuilder.newBuilder(Material.STICK, 1)
+                .setName(items.getString("items.knock-back.name"))
+                .setLore(items.getStringList("items.knock-back.lore"))
                 .build();
 
         player.getInventory().clear();
-        player.getInventory().setItem(0, compass);
+        player.getInventory().setItem(0, random_tp);
         player.getInventory().setItem(2, vanish);
-        player.getInventory().setItem(4, knockback);
+        player.getInventory().setItem(4, knock_back);
 
     }
 

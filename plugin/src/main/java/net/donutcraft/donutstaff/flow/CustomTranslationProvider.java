@@ -25,15 +25,20 @@ public class CustomTranslationProvider implements TranslationProvider {
 
         switch (key) {
             case "player.offline":
-                return messages.getString("commons.offline-player");
+                return messages.getString("commons.offline-player")
+                        .replace("%prefix%", messages.getString("commons.global-prefix"));
             case "sender.only-player":
-                return messages.getString("commons.only-player-sender");
+                return messages.getString("commons.only-player-sender")
+                        .replace("%prefix%", messages.getString("commons.global-prefix"));
             case "sender.unknown":
-                return messages.getString("commons.unknown-sender");
+                return messages.getString("commons.unknown-sender")
+                        .replace("%prefix%", messages.getString("commons.global-prefix"));
             case "command.no-permission":
-                return messages.getString("commons.not-enough-permissions");
+                return messages.getString("commons.not-enough-permissions")
+                        .replace("%prefix%", messages.getString("commons.global-prefix"));
             case "command.subcommand.invalid":
-                return messages.getString("commons.invalid-argument");
+                return messages.getString("commons.invalid-argument")
+                        .replace("%prefix%", messages.getString("commons.global-prefix"));
         }
         return translations.get(key);
     }

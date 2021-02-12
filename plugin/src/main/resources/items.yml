@@ -1,12 +1,13 @@
 # ITEMS FOR THE STAFF MODE
 
 items:
-  compass:
+  random-tp:
     name: "&cTeletransporte Aleatorio"
     lore:
       - "&7Click derecho para teletransportarte"
       - "&7A un jugador aleatorio."
-  stick:
+
+  knock-back:
     name: "&6Palo de Knockback"
     lore:
       - "&7Usalo para descubrir si el jugador"
@@ -17,4 +18,5 @@ items:
       - "&7Click derecho para desactivarlo."
   vanish-off:
     name: "&cVanish Desactivado"
+    lore:
       - "&7Click derecho para activarlo."

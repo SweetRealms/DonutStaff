@@ -22,10 +22,12 @@ public class CustomUsageBuilder implements UsageBuilder {
 
         switch (label) {
             case "freeze":
-                Component labelComponentFreeze = TextComponent.of(messages.getString("commons.args.freeze.usage"));
+                Component labelComponentFreeze = TextComponent.of(messages.getString("commons.args.freeze.usage")
+                .replace("%prefix%", messages.getString("commons.global-prefix")));
                 return infoComponent.append(labelComponentFreeze);
             case "revive":
-                Component labelComponent = TextComponent.of(messages.getString("commons.args.revive.usage"));
+                Component labelComponent = TextComponent.of(messages.getString("commons.args.revive.usage")
+                        .replace("%prefix%", messages.getString("commons.global-prefix")));
                 return infoComponent.append(labelComponent);
 
             default:

@@ -46,11 +46,6 @@
             <artifactId>gui-core</artifactId>
             <version>2.0.0</version>
         </dependency>
-        <dependency>
-            <groupId>com.github.ben-manes.caffeine</groupId>
-            <artifactId>caffeine</artifactId>
-            <version>2.8.8</version>
-        </dependency>
 
         <!--This adds the NMS-->
 

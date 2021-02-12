@@ -13,7 +13,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import org.checkerframework.checker.units.qual.A;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -23,7 +22,7 @@ public class PlayerInteractListener implements Listener {
 
     @Inject @Named("freeze-cache") private Cache<UUID> freezeCache;
     @Inject private StaffModeManager staffModeManager;
-    @Inject @Named("items") private FileCreator items;
+    @Inject @Named("items-file") private FileCreator items;
 
     @EventHandler
     public void onPlayerInteractEvent(PlayerInteractEvent event) {
@@ -42,12 +41,12 @@ public class PlayerInteractListener implements Listener {
         if (!itemStack.hasItemMeta()) {
             return;
         }
-        if (itemStack.getItemMeta().getDisplayName().equals(items.getString("items.compass.name"))) {
+        if (itemStack.getItemMeta().getDisplayName().equals(items.getString("items.random-tp.name"))) {
             Bukkit.getPluginManager().callEvent(new RandomTpEvent(player));
             event.setCancelled(true);
             return;
         }
-        if (itemStack.getItemMeta().getDisplayName().equals(items.getString("items.stick.name"))) {
+        if (itemStack.getItemMeta().getDisplayName().equals(items.getString("items.knock-back.name"))) {
             Bukkit.getPluginManager().callEvent(new KnockbackItemEvent(player));
             return;
         }

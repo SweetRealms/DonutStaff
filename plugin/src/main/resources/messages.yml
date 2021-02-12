@@ -14,6 +14,7 @@ commons:
     prefix: "&9Uso: "
     freeze:
       usage: "&b/freeze <player>"
+    no-more-args: "&cNo hay más argumentos."
 
 player:
   frozen-enabled:

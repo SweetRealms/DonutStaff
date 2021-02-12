@@ -19,7 +19,7 @@ public class VanishChangeStateListener implements Listener {
 
     @Inject private StaffModeManager staffModeManager;
     @Inject @Named("vanish-cache") private Cache<UUID> vanishCache;
-    @Inject @Named("items") private FileCreator items;
+    @Inject @Named("items-file") private FileCreator items;
 
     @EventHandler
     public void onVanishChangeStateEvent(VanishChangeStateEvent event) {
