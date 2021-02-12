@@ -18,7 +18,9 @@ import java.util.*;
 public class SimpleStaffModeManager implements StaffModeManager {
 
     @Inject @Named("messages") private FileCreator messages;
+    @Inject @Named("items") private FileCreator items;
     @Inject @Named("staff-mode-cache") private Cache<UUID> staffModeCache;
+    @Inject @Named("vanish-cache") private Cache<UUID> vanishCache;
     @Inject private NMSManager nmsManager;
 
     private final Map<UUID, ItemStack[]> playerItemsCache = new HashMap<>();
@@ -28,7 +30,7 @@ public class SimpleStaffModeManager implements StaffModeManager {
     public void enableStaffMode(Player player) {
         player.sendMessage(messages.getString("staff-mode.commands.mode.enabled")
                 .replace("%prefix%", messages.getString("commons.global-prefix")));
-        toggleVanish(player);
+        enableVanish(player);
         player.setAllowFlight(true);
         player.setFlying(true);
         savePlayerItems(player);
@@ -44,7 +46,7 @@ public class SimpleStaffModeManager implements StaffModeManager {
                 .replace("%prefix%", messages.getString("commons.global-prefix")));
         player.setFlying(false);
         player.setAllowFlight(false);
-        toggleVanish(player);
+        disableVanish(player);
         givePlayerItems(player);
         nmsManager.getNMSHandler().sendActionBar(player,
                 messages.getString("staff-mode.commands.mode.action-bar-disabled"));
@@ -52,17 +54,19 @@ public class SimpleStaffModeManager implements StaffModeManager {
     }
 
     @Override
-    public void toggleVanish(Player player) {
-        if (isOnStaffMode(player)) {
-            for (Player player1 : Bukkit.getOnlinePlayers()) {
-                nmsManager.getNMSHandler().showPlayer(player1, player);
-            }
-            return;
-        }
+    public void enableVanish(Player player) {
+        vanishCache.add(player.getUniqueId());
         for (Player player1 : Bukkit.getOnlinePlayers()) {
             nmsManager.getNMSHandler().hidePlayer(player1, player);
         }
+    }
 
+    @Override
+    public void disableVanish(Player player) {
+        vanishCache.remove(player.getUniqueId());
+        for (Player player1 : Bukkit.getOnlinePlayers()) {
+            nmsManager.getNMSHandler().showPlayer(player1, player);
+        }
     }
 
     @Override
@@ -74,23 +78,23 @@ public class SimpleStaffModeManager implements StaffModeManager {
     @Override
     public void giveStaffItemsToPlayer(Player player) {
         ItemStack compass = ItemBuilder.newBuilder(Material.COMPASS, 1)
-                .setName(messages.getString("items.compass.name"))
-                .setLore(messages.getStringList("items.compass.lore"))
+                .setName(items.getString("items.compass.name"))
+                .setLore(items.getStringList("items.compass.lore"))
                 .build();
 
-        ItemStack vansih = ItemBuilder.newBuilder(Material.WOOL, 1)
-                .setName(messages.getString("items.skull.name"))
-                .setLore(messages.getStringList("items.skull.lore"))
+        ItemStack vanish = ItemBuilder.newBuilder(Material.YELLOW_FLOWER, 1)
+                .setName(items.getString("items.vanish-on.name"))
+                .setLore(items.getStringList("items.vanish-on.lore"))
                 .build();
 
         ItemStack knockback = ItemBuilder.newBuilder(Material.STICK, 1)
-                .setName(messages.getString("items.stick.name"))
-                .setLore(messages.getStringList("items.stick.lore"))
+                .setName(items.getString("items.stick.name"))
+                .setLore(items.getStringList("items.stick.lore"))
                 .build();
 
         player.getInventory().clear();
         player.getInventory().setItem(0, compass);
-        player.getInventory().setItem(2, vansih);
+        player.getInventory().setItem(2, vanish);
         player.getInventory().setItem(4, knockback);
 
     }

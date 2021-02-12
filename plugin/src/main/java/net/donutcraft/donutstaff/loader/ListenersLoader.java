@@ -1,7 +1,11 @@
 package net.donutcraft.donutstaff.loader;
 
 import net.donutcraft.donutstaff.DonutStaff;
-import net.donutcraft.donutstaff.listeners.*;
+import net.donutcraft.donutstaff.api.event.KnockbackItemEvent;
+import net.donutcraft.donutstaff.listeners.KnockbackItemListener;
+import net.donutcraft.donutstaff.listeners.RandomTpListener;
+import net.donutcraft.donutstaff.listeners.VanishChangeStateListener;
+import net.donutcraft.donutstaff.listeners.vanilla.*;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 
@@ -20,6 +24,9 @@ public class ListenersLoader implements Loader {
     @Inject private PlayerDamageListener playerDamageListener;
     @Inject private BlockBreakListener blockBreakListener;
     @Inject private BlockPlaceListener blockPlaceListener;
+    @Inject private KnockbackItemListener knockbackItemListener;
+    @Inject private RandomTpListener randomTpListener;
+    @Inject private VanishChangeStateListener vanishChangeStateListener;
 
     @Override
     public void load() {
@@ -33,7 +40,10 @@ public class ListenersLoader implements Loader {
             playerPickupItemListener,
             playerDamageListener,
             blockBreakListener,
-            blockPlaceListener
+            blockPlaceListener,
+            knockbackItemListener,
+            randomTpListener,
+            vanishChangeStateListener
         );
     }
 

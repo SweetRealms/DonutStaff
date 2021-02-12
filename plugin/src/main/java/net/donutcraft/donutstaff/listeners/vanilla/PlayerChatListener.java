@@ -1,4 +1,4 @@
-package net.donutcraft.donutstaff.listeners;
+package net.donutcraft.donutstaff.listeners.vanilla;
 
 import net.donutcraft.donutstaff.files.FileCreator;
 import net.donutcraft.donutstaff.api.cache.Cache;

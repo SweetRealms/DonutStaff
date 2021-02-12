@@ -1,28 +1,27 @@
-package net.donutcraft.donutstaff.listeners;
+package net.donutcraft.donutstaff.listeners.vanilla;
 
 import net.donutcraft.donutstaff.api.cache.Cache;
-import net.donutcraft.donutstaff.api.staffmode.StaffModeHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.inventory.InventoryOpenEvent;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.UUID;
 
-public class PlayerMoveListener implements Listener {
+public class InventoryOpenListener implements Listener {
 
-    @Inject private StaffModeHandler staffModeHandler;
     @Inject @Named("freeze-cache") private Cache<UUID> freezeCache;
 
     @EventHandler
-    public void onPlayerMoveEvent(PlayerMoveEvent event) {
-        Player player = event.getPlayer();
+    public void onInventoryOpenEvent(InventoryOpenEvent event) {
+        Player player = (Player) event.getPlayer();
 
         if (freezeCache.exists(player.getUniqueId())) {
-            player.teleport(event.getFrom());
             event.setCancelled(true);
         }
+
     }
+
 }

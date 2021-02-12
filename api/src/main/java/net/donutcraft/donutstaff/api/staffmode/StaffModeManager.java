@@ -11,7 +11,9 @@ public interface StaffModeManager {
 
     void disableStaffMode(Player player);
 
-    void toggleVanish(Player player);
+    void enableVanish(Player player);
+
+    void disableVanish(Player player);
 
     void savePlayerItems(Player player);
 

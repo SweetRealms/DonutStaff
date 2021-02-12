@@ -9,6 +9,7 @@ import net.donutcraft.donutstaff.DonutStaff;
 import net.donutcraft.donutstaff.cache.FreezeCache;
 import net.donutcraft.donutstaff.cache.StaffChatCache;
 import net.donutcraft.donutstaff.cache.StaffModeCache;
+import net.donutcraft.donutstaff.cache.VanishCache;
 import net.donutcraft.donutstaff.files.FileCreator;
 import net.donutcraft.donutstaff.files.FileMatcher;
 import net.donutcraft.donutstaff.staffmode.SimpleStaffModeHandler;
@@ -54,9 +55,10 @@ public class MainModule implements Module {
         binder.bind(StaffModeManager.class).to(SimpleStaffModeManager.class);
         binder.bind(StaffModeHandler.class).to(SimpleStaffModeHandler.class);
 
-        binder.bind(new TypeReference<Cache<UUID>>(){}).named("freeze-cache").to(FreezeCache.class).singleton();
-        binder.bind(new TypeReference<Cache<UUID>>(){}).named("staff-chat-cache").to(StaffChatCache.class).singleton();
-        binder.bind(new TypeReference<Cache<UUID>>(){}).named("staff-mode-cache").to(StaffModeCache.class).singleton();
+        binder.bind(new TypeReference<Cache<UUID>>() {}).named("freeze-cache").to(FreezeCache.class).singleton();
+        binder.bind(new TypeReference<Cache<UUID>>() {}).named("staff-chat-cache").to(StaffChatCache.class).singleton();
+        binder.bind(new TypeReference<Cache<UUID>>() {}).named("staff-mode-cache").to(StaffModeCache.class).singleton();
+        binder.bind(new TypeReference<Cache<UUID>>() {}).named("vanish-cache").to(VanishCache.class).singleton();
 
     }
 }

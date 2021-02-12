@@ -1,4 +1,4 @@
-package net.donutcraft.donutstaff.listeners;
+package net.donutcraft.donutstaff.listeners.vanilla;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

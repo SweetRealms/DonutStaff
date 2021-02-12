@@ -11,7 +11,7 @@ items:
     lore:
       - "&7Usalo para descubrir si el jugador"
       - "&7Está usando antiknockback."
-  vansih-on:
+  vanish-on:
     name: "&aVanish Activado"
     lore:
       - "&7Click derecho para desactivarlo."

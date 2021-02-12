@@ -1,25 +1,27 @@
-package net.donutcraft.donutstaff.listeners;
+package net.donutcraft.donutstaff.listeners.vanilla;
 
 import net.donutcraft.donutstaff.api.cache.Cache;
 import net.donutcraft.donutstaff.api.staffmode.StaffModeManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityPickupItemEvent;
-import org.bukkit.event.player.PlayerPickupItemEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.UUID;
 
-public class PlayerPickupItemListener implements Listener {
+public class InventoryClickListener implements Listener {
 
-    @Inject @Named("freeze-cache") private Cache<UUID> freezeCache;
     @Inject private StaffModeManager staffModeManager;
+    @Inject @Named("freeze-cache") private Cache<UUID> freezeCache;
 
     @EventHandler
-    public void onPlayerPickupItemEvent(PlayerPickupItemEvent event) {
-        Player player = event.getPlayer();
+    public void onInventoryClickEvent(InventoryClickEvent event) {
+        if (!(event.getWhoClicked() instanceof Player)) {
+            return;
+        }
+        Player player = (Player) event.getWhoClicked();
 
         if (freezeCache.exists(player.getUniqueId()) || staffModeManager.isOnStaffMode(player)) {
             event.setCancelled(true);
