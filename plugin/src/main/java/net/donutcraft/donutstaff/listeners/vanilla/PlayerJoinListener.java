@@ -23,15 +23,21 @@ public class PlayerJoinListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         if (staffModeCache.exists(player.getUniqueId())) {
-            player.sendMessage(messages.getString("staff-mode.on-staff-join"));
+            player.sendMessage(messages.getString("staff-mode.on-staff-join")
+                    .replace("%prefix%", messages.getString("commons.global-prefix")));
+            player.setAllowFlight(true);
+            player.setFlying(true);
         }
 
         if (player.hasPermission("donutstaff.seestaff")) {
             return;
         }
 
-        for (UUID uuid : staffModeCache.get()) {
-            nmsManager.getNMSHandler().hidePlayer(player, Bukkit.getPlayer(uuid));
-        }
+        staffModeCache.get().forEach(uuid -> {
+            Player staff = Bukkit.getPlayer(uuid);
+            for (Player player1 : Bukkit.getOnlinePlayers()) {
+                nmsManager.getNMSHandler().hidePlayer(player1, staff);
+            }
+        });
     }
 }

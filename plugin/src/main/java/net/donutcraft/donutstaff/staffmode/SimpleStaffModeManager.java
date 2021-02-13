@@ -74,6 +74,9 @@ public class SimpleStaffModeManager implements StaffModeManager {
         vanishCache.remove(player.getUniqueId());
 
         for (Player player1 : Bukkit.getOnlinePlayers()) {
+            if (player1.hasPermission("donutstaff.seestaff")) {
+                return;
+            }
             nmsManager.getNMSHandler().showPlayer(player1, player);
         }
     }
