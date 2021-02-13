@@ -41,6 +41,7 @@ staff-mode:
   vanish-disabled: "%prefix% &cHas desactivado el vanish."
   random-tp: "%prefix% &aTe has telentrasportado a %player_name%."
   not-enough-players: "%prefix% &cNo hay suficientes jugadores."
+  on-staff-join: "%prefix% &e¡Recuerda! Tienes el modo staff activado."
   commands:
     mode:
       enabled: "%prefix% &aHas activado el modo de staff."

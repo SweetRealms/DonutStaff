@@ -30,9 +30,9 @@ public class SimpleStaffModeManager implements StaffModeManager {
     public void enableStaffMode(Player player) {
         player.sendMessage(messages.getString("staff-mode.commands.mode.enabled")
                 .replace("%prefix%", messages.getString("commons.global-prefix")));
-        enableVanish(player);
         player.setAllowFlight(true);
         player.setFlying(true);
+        enableVanish(player);
         savePlayerItems(player);
         giveStaffItemsToPlayer(player);
         nmsManager.getNMSHandler().sendActionBar(player,
@@ -58,6 +58,7 @@ public class SimpleStaffModeManager implements StaffModeManager {
         player.sendMessage(messages.getString("staff-mode.vanish-enabled")
                 .replace("%prefix%", messages.getString("commons.global-prefix")));
         vanishCache.add(player.getUniqueId());
+
         for (Player player1 : Bukkit.getOnlinePlayers()) {
             if (player1.hasPermission("donutstaff.seestaff")) {
                 return;
@@ -71,6 +72,7 @@ public class SimpleStaffModeManager implements StaffModeManager {
         player.sendMessage(messages.getString("staff-mode.vanish-disabled")
                 .replace("%prefix%", messages.getString("commons.global-prefix")));
         vanishCache.remove(player.getUniqueId());
+
         for (Player player1 : Bukkit.getOnlinePlayers()) {
             nmsManager.getNMSHandler().showPlayer(player1, player);
         }
@@ -121,3 +123,4 @@ public class SimpleStaffModeManager implements StaffModeManager {
         return staffModeCache.exists(player.getUniqueId());
     }
 }
+

@@ -37,9 +37,9 @@ public class PlayerDamageListener implements Listener {
         if (!(event.getEntity() instanceof Player)) {
             return;
         }
-        if (!(event.getDamager() instanceof Player)) {
-            return;
-        }
+        //if (!(event.getDamager() instanceof Player)) {
+          //  return;
+        //}
         Player player = (Player) event.getDamager();
         Player player1 = (Player) event.getEntity();
 

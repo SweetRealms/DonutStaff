@@ -100,7 +100,7 @@ public class SimpleStaffModeHandler implements StaffModeHandler {
         Player target = Bukkit.getPlayer(playerList.get(playerNumber));
         player.teleport(target);
         player.sendMessage(messages.getString("staff-mode.random-tp")
-                .replace("%player_name%", player.getName())
+                .replace("%player_name%", target.getName())
                 .replace("%prefix%", messages.getString("commons.global-prefix")));
     }
 }
