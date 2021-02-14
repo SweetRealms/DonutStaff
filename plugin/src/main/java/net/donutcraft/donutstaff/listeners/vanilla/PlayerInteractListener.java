@@ -6,14 +6,13 @@ import net.donutcraft.donutstaff.api.event.RandomTpEvent;
 import net.donutcraft.donutstaff.api.event.VanishChangeStateEvent;
 import net.donutcraft.donutstaff.api.staffmode.StaffModeManager;
 import net.donutcraft.donutstaff.files.FileCreator;
+
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -38,7 +37,7 @@ public class PlayerInteractListener implements Listener {
             return;
         }
 
-        ItemStack itemStack = player.getInventory().getItemInMainHand();
+        ItemStack itemStack = player.getInventory().getItemInHand();
         if (!itemStack.hasItemMeta()) {
             return;
         }

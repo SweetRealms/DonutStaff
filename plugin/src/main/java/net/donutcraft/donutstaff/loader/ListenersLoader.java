@@ -5,7 +5,9 @@ import net.donutcraft.donutstaff.listeners.KnockbackItemListener;
 import net.donutcraft.donutstaff.listeners.RandomTpListener;
 import net.donutcraft.donutstaff.listeners.VanishChangeStateListener;
 import net.donutcraft.donutstaff.listeners.vanilla.*;
+
 import org.bukkit.Bukkit;
+
 import org.bukkit.event.Listener;
 
 import javax.inject.Inject;
@@ -25,6 +27,7 @@ public class ListenersLoader implements Loader {
     @Inject private BlockPlaceListener blockPlaceListener;
     @Inject private PlayerInteractListener playerInteractListener;
     @Inject private FoodLevelChangeListener foodLevelChangeListener;
+    @Inject private PlayerQuitListener playerQuitListener;
     @Inject private KnockbackItemListener knockbackItemListener;
     @Inject private RandomTpListener randomTpListener;
     @Inject private VanishChangeStateListener vanishChangeStateListener;
@@ -44,6 +47,7 @@ public class ListenersLoader implements Loader {
             blockPlaceListener,
             playerInteractListener,
             foodLevelChangeListener,
+            playerQuitListener,
             knockbackItemListener,
             randomTpListener,
             vanishChangeStateListener

@@ -4,11 +4,13 @@ import net.donutcraft.donutstaff.api.cache.Cache;
 import net.donutcraft.donutstaff.api.event.VanishChangeStateEvent;
 import net.donutcraft.donutstaff.api.staffmode.StaffModeManager;
 import net.donutcraft.donutstaff.files.FileCreator;
+
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
+
 import team.unnamed.gui.core.item.type.ItemBuilder;
 
 import javax.inject.Inject;

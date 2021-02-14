@@ -3,6 +3,7 @@ package net.donutcraft.donutstaff.module;
 import me.yushust.inject.Binder;
 import me.yushust.inject.Module;
 import me.yushust.inject.key.TypeReference;
+
 import net.donutcraft.donutstaff.DonutStaff;
 import net.donutcraft.donutstaff.cache.FreezeCache;
 import net.donutcraft.donutstaff.cache.StaffChatCache;
@@ -17,6 +18,7 @@ import net.donutcraft.donutstaff.util.nms.SimpleNMSManager;
 import net.donutcraft.donutstaff.api.cache.Cache;
 import net.donutcraft.donutstaff.api.staffmode.StaffModeHandler;
 import net.donutcraft.donutstaff.api.staffmode.StaffModeManager;
+
 import org.bukkit.plugin.Plugin;
 
 import java.util.UUID;

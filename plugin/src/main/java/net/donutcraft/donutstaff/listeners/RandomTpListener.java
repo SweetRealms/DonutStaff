@@ -2,6 +2,7 @@ package net.donutcraft.donutstaff.listeners;
 
 import net.donutcraft.donutstaff.api.event.RandomTpEvent;
 import net.donutcraft.donutstaff.api.staffmode.StaffModeHandler;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

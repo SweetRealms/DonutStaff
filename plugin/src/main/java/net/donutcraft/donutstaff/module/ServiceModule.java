@@ -2,6 +2,7 @@ package net.donutcraft.donutstaff.module;
 
 import me.yushust.inject.Binder;
 import me.yushust.inject.Module;
+
 import net.donutcraft.donutstaff.service.DonutStaffService;
 import net.donutcraft.donutstaff.service.Service;
 

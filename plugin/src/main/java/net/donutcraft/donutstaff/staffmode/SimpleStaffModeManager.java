@@ -7,9 +7,11 @@ import net.donutcraft.donutstaff.api.staffmode.StaffModeManager;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import team.unnamed.gui.core.item.type.ItemBuilder;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -60,6 +62,9 @@ public class SimpleStaffModeManager implements StaffModeManager {
         vanishCache.add(player.getUniqueId());
 
         for (Player player1 : Bukkit.getOnlinePlayers()) {
+            if (player == player1) {
+                return;
+            }
             if (player1.hasPermission("donutstaff.seestaff")) {
                 return;
             }
@@ -74,6 +79,9 @@ public class SimpleStaffModeManager implements StaffModeManager {
         vanishCache.remove(player.getUniqueId());
 
         for (Player player1 : Bukkit.getOnlinePlayers()) {
+            if (player == player1) {
+                return;
+            }
             if (player1.hasPermission("donutstaff.seestaff")) {
                 return;
             }
@@ -89,20 +97,25 @@ public class SimpleStaffModeManager implements StaffModeManager {
 
     @Override
     public void giveStaffItemsToPlayer(Player player) {
-        ItemStack random_tp = ItemBuilder.newBuilder(Material.COMPASS, 1)
-                .setName(items.getString("items.random-tp.name"))
-                .setLore(items.getStringList("items.random-tp.lore"))
-                .build();
+        ItemStack random_tp = new ItemStack(Material.COMPASS);
+        ItemMeta radom_tp_meta = random_tp.getItemMeta();
+        radom_tp_meta.setDisplayName(items.getString("items.random-tp.name"));
+        radom_tp_meta.setLore(items.getStringList("items.random-tp.lore"));
+        random_tp.setItemMeta(radom_tp_meta);
 
-        ItemStack vanish = ItemBuilder.newBuilder(Material.YELLOW_FLOWER, 1)
-                .setName(items.getString("items.vanish-on.name"))
-                .setLore(items.getStringList("items.vanish-on.lore"))
-                .build();
+        ItemStack vanish = new ItemStack(Material.YELLOW_FLOWER);
+        ItemMeta vanish_meta = vanish.getItemMeta();
+        vanish_meta.setDisplayName(items.getString("items.vanish-on.name"));
+        vanish_meta.setLore(items.getStringList("items.vanish-on.lore"));
+        vanish.setItemMeta(vanish_meta);
 
-        ItemStack knock_back = ItemBuilder.newBuilder(Material.STICK, 1)
-                .setName(items.getString("items.knock-back.name"))
-                .setLore(items.getStringList("items.knock-back.lore"))
-                .build();
+        ItemStack knock_back = new ItemStack(Material.STICK);
+        ItemMeta knock_back_meta = knock_back.getItemMeta();
+        knock_back_meta.setDisplayName(items.getString("items.knock-back.name"));
+        knock_back_meta.setLore(items.getStringList("items.knock-back.lore"));
+        knock_back_meta.addEnchant(Enchantment.KNOCKBACK, 10, true);
+        knock_back_meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        knock_back.setItemMeta(knock_back_meta);
 
         player.getInventory().clear();
         player.getInventory().setItem(0, random_tp);

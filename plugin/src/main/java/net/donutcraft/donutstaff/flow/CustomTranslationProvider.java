@@ -2,6 +2,7 @@ package net.donutcraft.donutstaff.flow;
 
 import me.fixeddev.commandflow.Namespace;
 import me.fixeddev.commandflow.translator.TranslationProvider;
+
 import net.donutcraft.donutstaff.files.FileCreator;
 
 import javax.inject.Inject;

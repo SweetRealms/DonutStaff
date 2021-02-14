@@ -2,6 +2,7 @@ package net.donutcraft.donutstaff.listeners.vanilla;
 
 import net.donutcraft.donutstaff.api.cache.Cache;
 import net.donutcraft.donutstaff.api.staffmode.StaffModeManager;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -37,13 +38,17 @@ public class PlayerDamageListener implements Listener {
         if (!(event.getEntity() instanceof Player)) {
             return;
         }
-        //if (!(event.getDamager() instanceof Player)) {
-          //  return;
-        //}
+        if (!(event.getDamager() instanceof Player)) {
+           return;
+        }
         Player player = (Player) event.getDamager();
         Player player1 = (Player) event.getEntity();
 
-        if (freezeCache.exists(player.getUniqueId()) || staffModeManager.isOnStaffMode(player)) {
+        if (staffModeManager.isOnStaffMode(player)) {
+            return;
+        }
+
+        if (freezeCache.exists(player.getUniqueId())) {
             event.setCancelled(true);
             return;
         }

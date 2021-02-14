@@ -1,8 +1,10 @@
 package net.donutcraft.donutstaff;
 
 import me.yushust.inject.Injector;
+
 import net.donutcraft.donutstaff.module.MainModule;
 import net.donutcraft.donutstaff.service.DonutStaffService;
+
 import org.bukkit.plugin.java.JavaPlugin;
 
 import javax.inject.Inject;
