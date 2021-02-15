@@ -2,9 +2,6 @@ package net.donutcraft.donutstaff.api.staffmode;
 
 import org.bukkit.entity.Player;
 
-import java.util.Set;
-import java.util.UUID;
-
 public interface StaffModeManager {
 
     void enableStaffMode(Player player);

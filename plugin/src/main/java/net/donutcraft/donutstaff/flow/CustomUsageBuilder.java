@@ -1,6 +1,7 @@
 package net.donutcraft.donutstaff.flow;
 
 import me.fixeddev.commandflow.CommandContext;
+import me.fixeddev.commandflow.command.Command;
 import me.fixeddev.commandflow.usage.UsageBuilder;
 
 import net.donutcraft.donutstaff.files.FileCreator;
@@ -19,21 +20,19 @@ public class CustomUsageBuilder implements UsageBuilder {
 
     @Override
     public Component getUsage(CommandContext commandContext) {
+
+        Command toExecute = commandContext.getCommand();
+
         String label = String.join(" ", commandContext.getLabels());
-        Component infoComponent = TextComponent.of(messages.getString("commons.args.prefix"));
 
-        switch (label) {
-            case "freeze":
-                Component labelComponentFreeze = TextComponent.of(messages.getString("commons.args.freeze.usage")
-                .replace("%prefix%", messages.getString("commons.global-prefix")));
-                return infoComponent.append(labelComponentFreeze);
-            case "revive":
-                Component labelComponent = TextComponent.of(messages.getString("commons.args.revive.usage")
-                        .replace("%prefix%", messages.getString("commons.global-prefix")));
-                return infoComponent.append(labelComponent);
+        Component prefixComponent = TextComponent.of(messages.getString("commons.args.prefix"));
+        Component labelComponent = TextComponent.of(label);
+        Component partComponents = toExecute.getPart().getLineRepresentation();
 
-            default:
-                return TextComponent.of(messages.getString("commons.args.no-more-args"));
+        if(partComponents != null) {
+            labelComponent = prefixComponent.append(labelComponent.append(TextComponent.of(" ")).append(partComponents));
         }
+
+        return labelComponent;
     }
 }
