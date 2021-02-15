@@ -12,7 +12,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 
 import org.bukkit.inventory.meta.ItemMeta;
-import team.unnamed.gui.core.item.type.ItemBuilder;
 
 import javax.inject.Inject;
 import javax.inject.Named;
