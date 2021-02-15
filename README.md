@@ -1,3 +1,4 @@
+![DonutStaff](resources/donutstaff.png)
 # **DONUTSTAFF**
 
 A Simple Staff Mode plugin for you Minecraft Server. This plugin goals to lightweight and fast. At the moment, is on a 
