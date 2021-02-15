@@ -28,6 +28,7 @@ public class CommandsLoader implements Loader {
     @Inject private FreezeCommand freezeCommand;
     @Inject private FakeLeaveCommand fakeLeaveCommand;
     @Inject private ClearChatCommand clearChatCommand;
+    @Inject private HelpCommand helpCommand;
     @Inject private CustomTranslationProvider customTranslationProvider;
     @Inject private CustomUsageBuilder customUsageBuilder;
 
@@ -48,6 +49,7 @@ public class CommandsLoader implements Loader {
         commandList.addAll(annotatedCommandTreeBuilder.fromClass(freezeCommand));
         commandList.addAll(annotatedCommandTreeBuilder.fromClass(fakeLeaveCommand));
         commandList.addAll(annotatedCommandTreeBuilder.fromClass(clearChatCommand));
+        commandList.addAll(annotatedCommandTreeBuilder.fromClass(helpCommand));
 
         commandManager.registerCommands(commandList);
     }

@@ -22,12 +22,29 @@ and cool features._
 - Freeze Command --> With this command you can freeze the players that you think are hacking. While they are frozen, 
   they will only be able to talk in chat.
 - Clear Chat --> It comes with a built-in clear chat command.
+- Staff Chat --> A private chat only for staffs.
 
 **INCOMING**
 - Revive command --> With this command you will be able to give back the inventory of a player that has died.
   - It will have a limit time, such as 5 minutes, for performance reasons.
     
 - If you want me to add more things, you can suggest them in my discord.
+
+# **PERMISSIONS**
+- donutstaff.help
+  - Access to see the plugin help.
+- donutstaff.staffmode
+  - Access to the staff mode.
+- donutstaff.staffchat
+  - Access to the staff chat.
+- donutstaff.freeze
+  - Access to the freeze command.
+- donutstaff.fakeleave
+  - Access to the fakeleave command.
+- donutstaff.clearchat
+  - Access to the clear chat command.
+- donutstaff.seestaff
+  - Access to see others staff when they are vanished.
 
 # **FOR DEVELOPERS**
 This plugin comes with a built-in API that you can use to hook with the plugin.

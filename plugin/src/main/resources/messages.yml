@@ -43,6 +43,14 @@ staff-mode:
   not-enough-players: "%prefix% &cNo hay suficientes jugadores."
   on-staff-join: "%prefix% &e¡Recuerda! Tienes el modo staff activado."
   commands:
+    help:
+      - "&7&m----------------------"
+      - "&e· &9/staffmode -> &bChange to staff-mode."
+      - "&e· &9/clearchat -> &bClear the chat"
+      - "&e· &9/fakeleave -> &bDo a fake leave to enter in staff-mode"
+      - "&e· &9/freeze -> &bFreeze a player"
+      - "&e· &9/staffchat -> &bGet into the staff chat."
+      - "&7&m----------------------"
     mode:
       enabled: "%prefix% &aHas activado el modo de staff."
       disabled: "%prefix% &cHas desactivado el modo de staff."
