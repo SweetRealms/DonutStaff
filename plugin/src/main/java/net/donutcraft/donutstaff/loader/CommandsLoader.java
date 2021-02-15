@@ -3,6 +3,7 @@ package net.donutcraft.donutstaff.loader;
 import me.fixeddev.commandflow.CommandManager;
 import me.fixeddev.commandflow.annotated.AnnotatedCommandTreeBuilder;
 import me.fixeddev.commandflow.annotated.AnnotatedCommandTreeBuilderImpl;
+import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.part.PartInjector;
 import me.fixeddev.commandflow.annotated.part.SimplePartInjector;
 import me.fixeddev.commandflow.annotated.part.defaults.DefaultsModule;
@@ -13,6 +14,7 @@ import me.fixeddev.commandflow.translator.DefaultTranslator;
 
 import net.donutcraft.donutstaff.DonutStaff;
 import net.donutcraft.donutstaff.commands.*;
+import net.donutcraft.donutstaff.flow.CustomAuthorizer;
 import net.donutcraft.donutstaff.flow.CustomTranslationProvider;
 import net.donutcraft.donutstaff.flow.CustomUsageBuilder;
 
@@ -42,15 +44,22 @@ public class CommandsLoader implements Loader {
         CommandManager commandManager = new BukkitCommandManager(donutStaff.getName());
         commandManager.setTranslator(new DefaultTranslator(customTranslationProvider));
         commandManager.setUsageBuilder(customUsageBuilder);
+        commandManager.setAuthorizer(new CustomAuthorizer());
 
         List<Command> commandList = new ArrayList<>();
-        commandList.addAll(annotatedCommandTreeBuilder.fromClass(staffModeCommand));
-        commandList.addAll(annotatedCommandTreeBuilder.fromClass(staffChatCommand));
-        commandList.addAll(annotatedCommandTreeBuilder.fromClass(freezeCommand));
-        commandList.addAll(annotatedCommandTreeBuilder.fromClass(fakeLeaveCommand));
-        commandList.addAll(annotatedCommandTreeBuilder.fromClass(clearChatCommand));
-        commandList.addAll(annotatedCommandTreeBuilder.fromClass(helpCommand));
+        registerCommands(annotatedCommandTreeBuilder, commandManager,
+                staffChatCommand,
+                staffChatCommand,
+                freezeCommand,
+                fakeLeaveCommand,
+                clearChatCommand,
+                helpCommand
+                );
+    }
 
-        commandManager.registerCommands(commandList);
+    private void registerCommands(AnnotatedCommandTreeBuilder commandBuilder, CommandManager commandManager, CommandClass... commandClasses) {
+        for(CommandClass commandClass : commandClasses) {
+            commandManager.registerCommands(commandBuilder.fromClass(commandClass));
+        }
     }
 }
