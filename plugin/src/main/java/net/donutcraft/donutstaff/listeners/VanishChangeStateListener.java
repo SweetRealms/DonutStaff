@@ -29,7 +29,7 @@ public class VanishChangeStateListener implements Listener {
         Player player = event.getPlayer();
 
         if (vanishCache.exists(player.getUniqueId())) {
-            ItemStack vanish_disabled = new ItemStack(Material.RED_ROSE);
+            ItemStack vanish_disabled = new ItemStack(Material.SEA_LANTERN);
             ItemMeta vanish_meta_disabled = vanish_disabled.getItemMeta();
             vanish_meta_disabled.setDisplayName(items.getString("items.vanish-off.name"));
             vanish_meta_disabled.setLore(items.getStringList("items.vanish-off.lore"));
@@ -40,7 +40,7 @@ public class VanishChangeStateListener implements Listener {
             return;
         }
 
-        ItemStack vanish_enabled = new ItemStack(Material.YELLOW_FLOWER);
+        ItemStack vanish_enabled = new ItemStack(Material.GLOWSTONE);
         ItemMeta vanish_meta_enabled = vanish_enabled.getItemMeta();
         vanish_meta_enabled.setDisplayName(items.getString("items.vanish-on.name"));
         vanish_meta_enabled.setLore(items.getStringList("items.vanish-on.lore"));

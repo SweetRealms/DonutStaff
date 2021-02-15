@@ -103,7 +103,7 @@ public class SimpleStaffModeManager implements StaffModeManager {
         random_tp_meta.setLore(items.getStringList("items.random-tp.lore"));
         random_tp.setItemMeta(random_tp_meta);
 
-        ItemStack vanish = new ItemStack(Material.YELLOW_FLOWER);
+        ItemStack vanish = new ItemStack(Material.GLOWSTONE);
         ItemMeta vanish_meta = vanish.getItemMeta();
         vanish_meta.setDisplayName(items.getString("items.vanish-on.name"));
         vanish_meta.setLore(items.getStringList("items.vanish-on.lore"));

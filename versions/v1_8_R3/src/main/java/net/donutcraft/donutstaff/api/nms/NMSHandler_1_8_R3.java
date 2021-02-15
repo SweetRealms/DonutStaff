@@ -4,7 +4,6 @@ import net.minecraft.server.v1_8_R3.*;
 
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 public class NMSHandler_1_8_R3 implements NMSHandler {
     @Override
