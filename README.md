@@ -31,6 +31,8 @@ and cool features._
 - If you want me to add more things, you can suggest them in my discord.
 
 # **PERMISSIONS**
+- donutstaff.*
+  - Access to all the features of the plugin.
 - donutstaff.help
   - Access to see the plugin help.
 - donutstaff.staffmode
