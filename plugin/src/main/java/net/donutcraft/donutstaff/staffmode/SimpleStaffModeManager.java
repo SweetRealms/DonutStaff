@@ -63,10 +63,10 @@ public class SimpleStaffModeManager implements StaffModeManager {
 
         for (Player player1 : Bukkit.getOnlinePlayers()) {
             if (player == player1) {
-                return;
+                continue;
             }
-            if (player1.hasPermission("donutstaff.seestaff")) {
-                return;
+            if (player1.hasPermission("donustaff.seestaff")) {
+                continue;
             }
             nmsManager.getNMSHandler().hidePlayer(player1, player);
         }
@@ -80,10 +80,10 @@ public class SimpleStaffModeManager implements StaffModeManager {
 
         for (Player player1 : Bukkit.getOnlinePlayers()) {
             if (player == player1) {
-                return;
+                continue;
             }
-            if (player1.hasPermission("donutstaff.seestaff")) {
-                return;
+            if (player1.hasPermission("donustaff.seestaff")) {
+                continue;
             }
             nmsManager.getNMSHandler().showPlayer(player1, player);
         }
@@ -98,10 +98,10 @@ public class SimpleStaffModeManager implements StaffModeManager {
     @Override
     public void giveStaffItemsToPlayer(Player player) {
         ItemStack random_tp = new ItemStack(Material.COMPASS);
-        ItemMeta radom_tp_meta = random_tp.getItemMeta();
-        radom_tp_meta.setDisplayName(items.getString("items.random-tp.name"));
-        radom_tp_meta.setLore(items.getStringList("items.random-tp.lore"));
-        random_tp.setItemMeta(radom_tp_meta);
+        ItemMeta random_tp_meta = random_tp.getItemMeta();
+        random_tp_meta.setDisplayName(items.getString("items.random-tp.name"));
+        random_tp_meta.setLore(items.getStringList("items.random-tp.lore"));
+        random_tp.setItemMeta(random_tp_meta);
 
         ItemStack vanish = new ItemStack(Material.YELLOW_FLOWER);
         ItemMeta vanish_meta = vanish.getItemMeta();

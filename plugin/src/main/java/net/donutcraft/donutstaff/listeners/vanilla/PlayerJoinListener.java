@@ -31,6 +31,7 @@ public class PlayerJoinListener implements Listener {
             player.setAllowFlight(true);
             player.setFlying(true);
             staffModeManager.enableVanish(player);
+            event.setJoinMessage(null);
             return;
         }
 
