@@ -29,7 +29,7 @@ player:
     freezer: "%prefix% &aYou have unfrozen %player_name% with success!"
     target:
       - "&7&m---------------------------"
-      - "&bIt seems that you are clen, keep up like this."
+      - "&bIt seems that you are clean, keep up like this."
       - "&7&m---------------------------"
     title: "&bYOU HAVE BEEN UNFROZEN"
     subtitle: "&9YOU ARE FREE"
