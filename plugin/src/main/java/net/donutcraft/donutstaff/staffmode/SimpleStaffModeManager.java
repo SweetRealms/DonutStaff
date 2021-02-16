@@ -97,30 +97,30 @@ public class SimpleStaffModeManager implements StaffModeManager {
 
     @Override
     public void giveStaffItemsToPlayer(Player player) {
-        ItemStack random_tp = new ItemStack(Material.COMPASS);
-        ItemMeta random_tp_meta = random_tp.getItemMeta();
-        random_tp_meta.setDisplayName(items.getString("items.random-tp.name"));
-        random_tp_meta.setLore(items.getStringList("items.random-tp.lore"));
-        random_tp.setItemMeta(random_tp_meta);
+        ItemStack randomTp = new ItemStack(Material.COMPASS);
+        ItemMeta randomTpMeta = randomTp.getItemMeta();
+        randomTpMeta.setDisplayName(items.getString("items.random-tp.name"));
+        randomTpMeta.setLore(items.getStringList("items.random-tp.lore"));
+        randomTp.setItemMeta(randomTpMeta);
 
         ItemStack vanish = new ItemStack(Material.GLOWSTONE);
-        ItemMeta vanish_meta = vanish.getItemMeta();
-        vanish_meta.setDisplayName(items.getString("items.vanish-on.name"));
-        vanish_meta.setLore(items.getStringList("items.vanish-on.lore"));
-        vanish.setItemMeta(vanish_meta);
+        ItemMeta vanishMeta = vanish.getItemMeta();
+        vanishMeta.setDisplayName(items.getString("items.vanish-on.name"));
+        vanishMeta.setLore(items.getStringList("items.vanish-on.lore"));
+        vanish.setItemMeta(vanishMeta);
 
-        ItemStack knock_back = new ItemStack(Material.STICK);
-        ItemMeta knock_back_meta = knock_back.getItemMeta();
-        knock_back_meta.setDisplayName(items.getString("items.knock-back.name"));
-        knock_back_meta.setLore(items.getStringList("items.knock-back.lore"));
-        knock_back_meta.addEnchant(Enchantment.KNOCKBACK, 10, true);
-        knock_back_meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        knock_back.setItemMeta(knock_back_meta);
+        ItemStack knockBack = new ItemStack(Material.STICK);
+        ItemMeta knockBackMeta = knockBack.getItemMeta();
+        knockBackMeta.setDisplayName(items.getString("items.knock-back.name"));
+        knockBackMeta.setLore(items.getStringList("items.knock-back.lore"));
+        knockBackMeta.addEnchant(Enchantment.KNOCKBACK, 10, true);
+        knockBackMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        knockBack.setItemMeta(knockBackMeta);
 
         player.getInventory().clear();
-        player.getInventory().setItem(0, random_tp);
+        player.getInventory().setItem(0, randomTp);
         player.getInventory().setItem(2, vanish);
-        player.getInventory().setItem(4, knock_back);
+        player.getInventory().setItem(4, knockBack);
 
     }
 

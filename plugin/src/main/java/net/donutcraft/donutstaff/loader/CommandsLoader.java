@@ -9,7 +9,6 @@ import me.fixeddev.commandflow.annotated.part.SimplePartInjector;
 import me.fixeddev.commandflow.annotated.part.defaults.DefaultsModule;
 import me.fixeddev.commandflow.bukkit.BukkitCommandManager;
 import me.fixeddev.commandflow.bukkit.factory.BukkitModule;
-import me.fixeddev.commandflow.command.Command;
 import me.fixeddev.commandflow.translator.DefaultTranslator;
 
 import net.donutcraft.donutstaff.DonutStaff;
@@ -19,8 +18,6 @@ import net.donutcraft.donutstaff.flow.CustomTranslationProvider;
 import net.donutcraft.donutstaff.flow.CustomUsageBuilder;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.List;
 
 public class CommandsLoader implements Loader {
 
@@ -46,9 +43,8 @@ public class CommandsLoader implements Loader {
         commandManager.setUsageBuilder(customUsageBuilder);
         commandManager.setAuthorizer(new CustomAuthorizer());
 
-        List<Command> commandList = new ArrayList<>();
         registerCommands(annotatedCommandTreeBuilder, commandManager,
-                staffChatCommand,
+                staffModeCommand,
                 staffChatCommand,
                 freezeCommand,
                 fakeLeaveCommand,

@@ -16,9 +16,12 @@ public class DonutStaff extends JavaPlugin {
     @Named("main-service")
     private DonutStaffService donutStaffService;
 
-    public void onEnable() {
+    public void onLoad() {
         Injector injector = Injector.create(new MainModule(this));
         injector.getInstance(getClass());
+    }
+
+    public void onEnable() {
 
         donutStaffService.start();
     }
