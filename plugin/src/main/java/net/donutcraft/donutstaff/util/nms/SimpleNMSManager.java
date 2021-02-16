@@ -52,6 +52,7 @@ public class SimpleNMSManager implements NMSManager {
                 break;
             default:
                 Bukkit.getLogger().severe("Your server version is not supported!");
+                break;
         }
     }
 

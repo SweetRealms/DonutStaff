@@ -20,6 +20,7 @@ public class SimpleStaffModeHandler implements StaffModeHandler {
     @Inject @Named("freeze-cache") private Cache<UUID> freezeCache;
     @Inject @Named("staff-chat-cache") private Cache<UUID> staffChatCache;
     @Inject private NMSManager nmsManager;
+    private Random random;
 
     @Override
     public void freezePlayer(Player target) {
@@ -84,7 +85,6 @@ public class SimpleStaffModeHandler implements StaffModeHandler {
 
     @Override
     public void randomTp(Player player) {
-        Random random = new Random();
         List<UUID> playerList = new ArrayList<>();
 
         for (Player player1 : Bukkit.getOnlinePlayers()) {
