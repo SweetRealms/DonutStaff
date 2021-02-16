@@ -28,6 +28,7 @@ and cool features._
 **INCOMING**
 - Revive command --> With this command you will be able to give back the inventory of a player that has died.
   - It will have a limit time, such as 5 minutes, for performance reasons.
+- Customizable items for the staff mode.  
     
 - If you want me to add more things, you can suggest them in my discord.
 
