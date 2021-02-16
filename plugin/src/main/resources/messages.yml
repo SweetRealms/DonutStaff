@@ -5,43 +5,42 @@
 
 commons:
   global-prefix: "&bStaffMode &7>"
-  only-player-sender: "%prefix% &cSolo un jugador puede ejecutar el comando."
-  not-enough-permissions: "%prefix% &cNo tienes permisos para ejecutar este comando."
-  invalid-argument: "%prefix% &cEl argumento introducido no es valido."
-  offline-player: "%prefix% &cEl jugador no está conectado."
-  unkown-sender: "%prefix% &cNo se reconoce el nombre del jugador."
+  only-player-sender: "%prefix% &cThis command can only be executed by players."
+  not-enough-permissions: "%prefix% &cYou don't have enough permissions to execute this command."
+  invalid-argument: "%prefix% &cThe argument introduced isn't valid."
+  offline-player: "%prefix% &cThe player isn't online."
+  unkown-sender: "%prefix% &cWe couldn't recognize the player name."
   args:
-    prefix: "&9Uso: "
+    prefix: "&9Use: "
     freeze:
       usage: "&b/freeze <player>"
-    no-more-args: "&cNo hay más argumentos."
+    no-more-args: "&cNo more arguments."
 
 player:
   frozen-enabled:
-    freezer: "%prefix% &a¡Has congelado a %player_name% con éxito!"
+    freezer: "%prefix% &aYou have frozen %player_name% with success!"
     target:
       - "&7&m---------------------------"
-      - "&bHas sido congelado, no te muevas"
-      - "&bhasta que te revisen."
+      - "&bYou have been frozen!"
       - "&7&m---------------------------"
-    title: "&cHAS SIDO CONGELADO"
-    subtitle: "&4NO TE MUEVAS"
+    title: "&cYOU HAVE BEEN FROZEN"
+    subtitle: "&4DO NOT MOVE"
   frozen-disabled:
-    freezer: "%prefix% &a¡Has descongelado a %player_name% con éxito!"
+    freezer: "%prefix% &aYou have unfrozen %player_name% with success!"
     target:
       - "&7&m---------------------------"
-      - "&bAl parecer estás limpio, portate bien."
+      - "&bIt seems that you are clen, keep up like this."
       - "&7&m---------------------------"
-    title: "&bHAS SIDO DESCONGELADO"
-    subtitle: "&9ERES LIBRE"
+    title: "&bYOU HAVE BEEN UNFROZEN"
+    subtitle: "&9YOU ARE FREE"
 
 staff-mode:
-  bypass: "%prefix% &cNo puedes interactuar con este jugador."
-  vanish-enabled: "%prefix% &aHas activado el vanish."
-  vanish-disabled: "%prefix% &cHas desactivado el vanish."
-  random-tp: "%prefix% &aTe has telentrasportado a %player_name%."
-  not-enough-players: "%prefix% &cNo hay suficientes jugadores."
-  on-staff-join: "%prefix% &e¡Recuerda! Tienes el modo staff activado."
+  bypass: "%prefix% &cYou can't interact with this player."
+  vanish-enabled: "%prefix% &aYou have enabled the vanish-mode."
+  vanish-disabled: "%prefix% &cYou have disabled the vanish-mode."
+  random-tp: "%prefix% &aYou have been teleported to %player_name%."
+  not-enough-players: "%prefix% &cThere isn't enough players."
+  on-staff-join: "%prefix% &eREMEMBER! You have the staff-mode enabled.."
   commands:
     help:
       - "&7&m----------------------"
@@ -52,13 +51,13 @@ staff-mode:
       - "&e· &9/staffchat -> &bGet into the staff chat."
       - "&7&m----------------------"
     mode:
-      enabled: "%prefix% &aHas activado el modo de staff."
-      disabled: "%prefix% &cHas desactivado el modo de staff."
-      action-bar-enabled: "&7| &bHas activado el modo de Staff &7|"
-      action-bar-disabled: "&7| &bHas desactivado el modo de Staff &7|"
-    fake-leave: "&eEl jugador %player_name% se ha desconectado."
-    clear-chat: "%prefix% &9El chat ha sido limpiado por un administrador."
+      enabled: "%prefix% &aYou have enabled the staff-mode."
+      disabled: "%prefix% &cYou have disabled the staff-mode."
+      action-bar-enabled: "&7| &bYou have enabled the staff-mode &7|"
+      action-bar-disabled: "&7| &bYou have disabled the staff-mode &7|"
+    fake-leave: "&eThe player %player_name% left the game."
+    clear-chat: "%prefix% &9The chat has been cleared by an administrator."
   staff-chat:
     prefix: "&9SC &7|| &b%player_name% &7> &e"
-    enabled: "%prefix% &aHas activado el chat de staff correctamente."
-    disabled: "%prefix% &cHas desactivado el chat de staff correctamente."
+    enabled: "%prefix% &aYou have enabled the staff-chat."
+    disabled: "%prefix% &cYou have disabled the staff-chat."

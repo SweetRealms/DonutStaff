@@ -2,21 +2,21 @@
 
 items:
   random-tp:
-    name: "&cTeletransporte Aleatorio"
+    name: "&cRandom Teleport"
     lore:
-      - "&7Click derecho para teletransportarte"
-      - "&7A un jugador aleatorio."
+      - "&7Click this item to get teleported"
+      - "&7to a random player"
 
   knock-back:
-    name: "&6Palo de Knockback"
+    name: "&6Knockback Stick"
     lore:
-      - "&7Usalo para descubrir si el jugador"
-      - "&7Está usando antiknockback."
+      - "&7Use this stick to discover"
+      - "&7if a player is using anti-knockback."
   vanish-on:
-    name: "&aVanish Activado"
+    name: "&aVanish Enabled"
     lore:
-      - "&7Click derecho para desactivarlo."
+      - "&7Click to disable it."
   vanish-off:
-    name: "&cVanish Desactivado"
+    name: "&cVanish Disabled"
     lore:
-      - "&7Click derecho para activarlo."
+      - "&7Click to enable it."
