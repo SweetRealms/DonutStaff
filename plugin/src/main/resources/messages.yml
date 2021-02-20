@@ -57,6 +57,11 @@ staff-mode:
       action-bar-disabled: "&7| &bYou have disabled the staff-mode &7|"
     fake-leave: "&eThe player %player_name% left the game."
     clear-chat: "%prefix% &9The chat has been cleared by an administrator."
+    revive:
+      sender-available: "%prefix% &a%player_name% has received his items back!"
+      target-available: "%prefix% &aYou have been revived!"
+      sender-unavailable: "%prefix% &c%player_name% hasn't got a saved inventory!"
+
   staff-chat:
     prefix: "&9SC &7|| &b%player_name% &7> &e"
     enabled: "%prefix% &aYou have enabled the staff-chat."
