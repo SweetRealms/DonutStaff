@@ -1,6 +1,6 @@
 package net.donutcraft.donutstaff.listeners.vanilla;
 
-import net.donutcraft.donutstaff.api.cache.Cache;
+import net.donutcraft.donutstaff.api.cache.SetCache;
 import net.donutcraft.donutstaff.api.event.KnockbackItemEvent;
 import net.donutcraft.donutstaff.api.event.RandomTpEvent;
 import net.donutcraft.donutstaff.api.event.VanishChangeStateEvent;
@@ -20,7 +20,7 @@ import java.util.UUID;
 
 public class PlayerInteractListener implements Listener {
 
-    @Inject @Named("freeze-cache") private Cache<UUID> freezeCache;
+    @Inject @Named("freeze-cache") private SetCache<UUID> freezeCache;
     @Inject private StaffModeManager staffModeManager;
     @Inject @Named("items-file") private FileCreator items;
 
@@ -28,7 +28,7 @@ public class PlayerInteractListener implements Listener {
     public void onPlayerInteractEvent(PlayerInteractEvent event) {
         Player player = event.getPlayer();
 
-        if (freezeCache.exists(player.getUniqueId())) {
+        if (freezeCache.get().contains(player.getUniqueId())) {
             event.setCancelled(true);
             return;
         }

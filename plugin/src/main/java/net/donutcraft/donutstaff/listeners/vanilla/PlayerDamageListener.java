@@ -1,6 +1,6 @@
 package net.donutcraft.donutstaff.listeners.vanilla;
 
-import net.donutcraft.donutstaff.api.cache.Cache;
+import net.donutcraft.donutstaff.api.cache.SetCache;
 import net.donutcraft.donutstaff.api.staffmode.StaffModeManager;
 
 import org.bukkit.entity.Player;
@@ -15,7 +15,7 @@ import java.util.UUID;
 
 public class PlayerDamageListener implements Listener {
 
-    @Inject @Named("freeze-cache") private Cache<UUID> freezeCache;
+    @Inject @Named("freeze-cache") private SetCache<UUID> freezeCache;
     @Inject private StaffModeManager staffModeManager;
 
     @EventHandler
@@ -25,7 +25,7 @@ public class PlayerDamageListener implements Listener {
         }
 
         Player player = (Player) event.getEntity();
-        if (freezeCache.exists(player.getUniqueId()) || staffModeManager.isOnStaffMode(player)) {
+        if (freezeCache.get().contains(player.getUniqueId()) || staffModeManager.isOnStaffMode(player)) {
             event.setCancelled(true);
         }
     }
@@ -48,11 +48,11 @@ public class PlayerDamageListener implements Listener {
             return;
         }
 
-        if (freezeCache.exists(player.getUniqueId())) {
+        if (freezeCache.get().contains(player.getUniqueId())) {
             event.setCancelled(true);
             return;
         }
-        if (freezeCache.exists(player1.getUniqueId()) || staffModeManager.isOnStaffMode(player1)) {
+        if (freezeCache.get().contains(player1.getUniqueId()) || staffModeManager.isOnStaffMode(player1)) {
             event.setCancelled(true);
         }
     }

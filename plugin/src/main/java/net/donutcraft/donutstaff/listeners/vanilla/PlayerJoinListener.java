@@ -1,6 +1,6 @@
 package net.donutcraft.donutstaff.listeners.vanilla;
 
-import net.donutcraft.donutstaff.api.cache.Cache;
+import net.donutcraft.donutstaff.api.cache.SetCache;
 import net.donutcraft.donutstaff.api.staffmode.StaffModeManager;
 import net.donutcraft.donutstaff.files.FileCreator;
 import net.donutcraft.donutstaff.util.nms.NMSManager;
@@ -17,7 +17,7 @@ import java.util.UUID;
 
 public class PlayerJoinListener implements Listener {
 
-    @Inject @Named("vanish-cache") private Cache<UUID> vanishCache;
+    @Inject @Named("vanish-cache") private SetCache<UUID> vanishCache;
     @Inject @Named("messages") private FileCreator messages;
     @Inject private NMSManager nmsManager;
     @Inject private StaffModeManager staffModeManager;
@@ -25,7 +25,7 @@ public class PlayerJoinListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        if (vanishCache.exists(player.getUniqueId())) {
+        if (vanishCache.get().contains(player.getUniqueId())) {
             player.sendMessage(messages.getString("staff-mode.on-staff-join")
                     .replace("%prefix%", messages.getString("commons.global-prefix")));
             player.setAllowFlight(true);

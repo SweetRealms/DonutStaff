@@ -1,13 +1,15 @@
 package net.donutcraft.donutstaff.staffmode;
 
+import net.donutcraft.donutstaff.api.cache.MapCache;
 import net.donutcraft.donutstaff.files.FileCreator;
+import net.donutcraft.donutstaff.util.InventoryUtils;
 import net.donutcraft.donutstaff.util.nms.NMSManager;
-import net.donutcraft.donutstaff.api.cache.Cache;
+import net.donutcraft.donutstaff.api.cache.SetCache;
 import net.donutcraft.donutstaff.api.staffmode.StaffModeHandler;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import javax.inject.Inject;
@@ -17,8 +19,10 @@ import java.util.*;
 public class SimpleStaffModeHandler implements StaffModeHandler {
 
     @Inject @Named("messages") private FileCreator messages;
-    @Inject @Named("freeze-cache") private Cache<UUID> freezeCache;
-    @Inject @Named("staff-chat-cache") private Cache<UUID> staffChatCache;
+    @Inject @Named("freeze-cache") private SetCache<UUID> freezeCache;
+    @Inject @Named("staff-chat-cache") private SetCache<UUID> staffChatCache;
+    @Inject @Named("death-inventories-cache") private MapCache<UUID, List<ItemStack>> deathInventoriesCache;
+    @Inject @Named("death-armor-cache") private MapCache<UUID, List<ItemStack>> deathArmorCache;
     @Inject private NMSManager nmsManager;
     private Random random;
 
@@ -29,7 +33,7 @@ public class SimpleStaffModeHandler implements StaffModeHandler {
         }
         nmsManager.getNMSHandler().sendTitle(target, messages.getString("player.frozen-enabled.title"),
                 messages.getString("player.frozen-enabled.subtitle"),5, 1000000, 5);
-        freezeCache.add(target.getUniqueId());
+        freezeCache.get().add(target.getUniqueId());
     }
 
     @Override
@@ -40,12 +44,12 @@ public class SimpleStaffModeHandler implements StaffModeHandler {
         nmsManager.getNMSHandler().sendTitle(target, "", "", 1, 1, 1);
         nmsManager.getNMSHandler().sendTitle(target, messages.getString("player.frozen-disabled.title"),
                 messages.getString("player.frozen-disabled.subtitle"), 5, 20, 5);
-        freezeCache.remove(target.getUniqueId());
+        freezeCache.get().remove(target.getUniqueId());
     }
 
     @Override
     public boolean isPlayerFrozen(Player target) {
-        return freezeCache.exists(target.getUniqueId());
+        return freezeCache.get().contains(target.getUniqueId());
     }
 
     @Override
@@ -53,17 +57,17 @@ public class SimpleStaffModeHandler implements StaffModeHandler {
         if (!isPlayerInStaffChat(player)) {
             player.sendMessage(messages.getString("staff-mode.staff-chat.enabled")
                     .replace("%prefix%", messages.getString("commons.global-prefix")));
-            staffChatCache.add(player.getUniqueId());
+            staffChatCache.get().add(player.getUniqueId());
             return;
         }
-        staffChatCache.remove(player.getUniqueId());
+        staffChatCache.get().remove(player.getUniqueId());
         player.sendMessage(messages.getString("staff-mode.staff-chat.disabled")
                 .replace("%prefix%", messages.getString("commons.global-prefix")));
     }
 
     @Override
     public boolean isPlayerInStaffChat(Player player) {
-        return staffChatCache.exists(player.getUniqueId());
+        return staffChatCache.get().contains(player.getUniqueId());
     }
 
     @Override
@@ -72,15 +76,46 @@ public class SimpleStaffModeHandler implements StaffModeHandler {
                 .replace("%player_name%", player.getName()));
     }
 
-    // IN PROGRESS
     @Override
     public void saveDeathPlayerInventory(Player player) {
-        for (ItemStack itemStack : player.getInventory()) {
-            if (itemStack == null || itemStack.getType() == Material.AIR) {
-                return;
-            }
+        Inventory inventory = player.getInventory();
 
+        List<ItemStack> content = InventoryUtils.getAvailableItems(inventory, 0, 27);
+        List<ItemStack> armor = InventoryUtils.getAvailableItems(inventory, 36, 40);
+
+        if (hasPlayerSavedInventory(player)) {
+            deathInventoriesCache.get().remove(player.getUniqueId());
+            deathArmorCache.get().remove(player.getUniqueId());
         }
+
+        deathInventoriesCache.get().put(player.getUniqueId(), content);
+        deathArmorCache.get().put(player.getUniqueId(), armor);
+    }
+
+    @Override
+    public void returnPlayerInventory(Player player, Player sender) {
+        if (!hasPlayerSavedInventory(player)) {
+            sender.sendMessage(messages.getString("staff-mode.commands.revive.sender-unavailable")
+                    .replace("%player_name%", player.getName())
+                    .replace("%prefix%", messages.getString("commons.global-prefix")));
+            return;
+        }
+        sender.sendMessage(messages.getString("staff-mode.commands.revive.sender-available")
+                .replace("%player_name%", player.getName())
+                .replace("%prefix%", messages.getString("commons.global-prefix")));
+        player.sendMessage(messages.getString("staff-mode.commands.revive.target-available")
+                .replace("%player_name%", player.getName())
+                .replace("%prefix%", messages.getString("commons.global-prefix")));
+        InventoryUtils.addItemsToPlayer(player, deathInventoriesCache.get().get(player.getUniqueId()), true);
+        InventoryUtils.addArmorToPlayer(player, deathInventoriesCache.get().get(player.getUniqueId()), true);
+        deathInventoriesCache.get().remove(player.getUniqueId());
+        deathArmorCache.get().remove(player.getUniqueId());
+    }
+
+    @Override
+    public boolean hasPlayerSavedInventory(Player player) {
+        return deathInventoriesCache.get().containsKey(player.getUniqueId())
+                && deathInventoriesCache.get().containsKey(player.getUniqueId());
     }
 
     @Override

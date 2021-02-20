@@ -28,6 +28,7 @@ public class CommandsLoader implements Loader {
     @Inject private FakeLeaveCommand fakeLeaveCommand;
     @Inject private ClearChatCommand clearChatCommand;
     @Inject private HelpCommand helpCommand;
+    @Inject private ReviveCommand reviveCommand;
     @Inject private CustomTranslationProvider customTranslationProvider;
     @Inject private CustomUsageBuilder customUsageBuilder;
 
@@ -49,7 +50,8 @@ public class CommandsLoader implements Loader {
                 freezeCommand,
                 fakeLeaveCommand,
                 clearChatCommand,
-                helpCommand
+                helpCommand,
+                reviveCommand
                 );
     }
 

@@ -1,6 +1,6 @@
 package net.donutcraft.donutstaff.listeners.vanilla;
 
-import net.donutcraft.donutstaff.api.cache.Cache;
+import net.donutcraft.donutstaff.api.cache.SetCache;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,13 +13,13 @@ import java.util.UUID;
 
 public class PlayerMoveListener implements Listener {
 
-    @Inject @Named("freeze-cache") private Cache<UUID> freezeCache;
+    @Inject @Named("freeze-cache") private SetCache<UUID> freezeCache;
 
     @EventHandler
     public void onPlayerMoveEvent(PlayerMoveEvent event) {
         Player player = event.getPlayer();
 
-        if (freezeCache.exists(player.getUniqueId())) {
+        if (freezeCache.get().contains(player.getUniqueId())) {
             player.teleport(event.getFrom());
             event.setCancelled(true);
         }

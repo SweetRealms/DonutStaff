@@ -1,6 +1,6 @@
 package net.donutcraft.donutstaff.listeners;
 
-import net.donutcraft.donutstaff.api.cache.Cache;
+import net.donutcraft.donutstaff.api.cache.SetCache;
 import net.donutcraft.donutstaff.api.event.VanishChangeStateEvent;
 import net.donutcraft.donutstaff.api.staffmode.StaffModeManager;
 import net.donutcraft.donutstaff.files.FileCreator;
@@ -20,14 +20,14 @@ import java.util.UUID;
 public class VanishChangeStateListener implements Listener {
 
     @Inject private StaffModeManager staffModeManager;
-    @Inject @Named("vanish-cache") private Cache<UUID> vanishCache;
+    @Inject @Named("vanish-cache") private SetCache<UUID> vanishCache;
     @Inject @Named("items-file") private FileCreator items;
 
     @EventHandler
     public void onVanishChangeStateEvent(VanishChangeStateEvent event) {
         Player player = event.getPlayer();
 
-        if (vanishCache.exists(player.getUniqueId())) {
+        if (vanishCache.get().contains(player.getUniqueId())) {
             ItemStack vanishDisabled = new ItemStack(Material.SEA_LANTERN);
             ItemMeta vanishMetaDisabled = vanishDisabled.getItemMeta();
             vanishMetaDisabled.setDisplayName(items.getString("items.vanish-off.name"));

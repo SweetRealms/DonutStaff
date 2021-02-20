@@ -2,7 +2,7 @@ package net.donutcraft.donutstaff.staffmode;
 
 import net.donutcraft.donutstaff.files.FileCreator;
 import net.donutcraft.donutstaff.util.nms.NMSManager;
-import net.donutcraft.donutstaff.api.cache.Cache;
+import net.donutcraft.donutstaff.api.cache.SetCache;
 import net.donutcraft.donutstaff.api.staffmode.StaffModeManager;
 
 import org.bukkit.Bukkit;
@@ -21,8 +21,8 @@ public class SimpleStaffModeManager implements StaffModeManager {
 
     @Inject @Named("messages") private FileCreator messages;
     @Inject @Named("items-file") private FileCreator items;
-    @Inject @Named("staff-mode-cache") private Cache<UUID> staffModeCache;
-    @Inject @Named("vanish-cache") private Cache<UUID> vanishCache;
+    @Inject @Named("staff-mode-cache") private SetCache<UUID> staffModeCache;
+    @Inject @Named("vanish-cache") private SetCache<UUID> vanishCache;
     @Inject private NMSManager nmsManager;
 
     private final Map<UUID, ItemStack[]> playerItemsCache = new HashMap<>();
@@ -39,7 +39,7 @@ public class SimpleStaffModeManager implements StaffModeManager {
         giveStaffItemsToPlayer(player);
         nmsManager.getNMSHandler().sendActionBar(player,
                 messages.getString("staff-mode.commands.mode.action-bar-enabled"));
-        staffModeCache.add(player.getUniqueId());
+        staffModeCache.get().add(player.getUniqueId());
     }
 
     @Override
@@ -52,14 +52,14 @@ public class SimpleStaffModeManager implements StaffModeManager {
         givePlayerItems(player);
         nmsManager.getNMSHandler().sendActionBar(player,
                 messages.getString("staff-mode.commands.mode.action-bar-disabled"));
-        staffModeCache.remove(player.getUniqueId());
+        staffModeCache.get().remove(player.getUniqueId());
     }
 
     @Override
     public void enableVanish(Player player) {
         player.sendMessage(messages.getString("staff-mode.vanish-enabled")
                 .replace("%prefix%", messages.getString("commons.global-prefix")));
-        vanishCache.add(player.getUniqueId());
+        vanishCache.get().add(player.getUniqueId());
 
         for (Player player1 : Bukkit.getOnlinePlayers()) {
             if (player == player1) {
@@ -76,7 +76,7 @@ public class SimpleStaffModeManager implements StaffModeManager {
     public void disableVanish(Player player) {
         player.sendMessage(messages.getString("staff-mode.vanish-disabled")
                 .replace("%prefix%", messages.getString("commons.global-prefix")));
-        vanishCache.remove(player.getUniqueId());
+        vanishCache.get().remove(player.getUniqueId());
 
         for (Player player1 : Bukkit.getOnlinePlayers()) {
             if (player == player1) {
@@ -136,7 +136,7 @@ public class SimpleStaffModeManager implements StaffModeManager {
 
     @Override
     public boolean isOnStaffMode(Player player) {
-        return staffModeCache.exists(player.getUniqueId());
+        return staffModeCache.get().contains(player.getUniqueId());
     }
 }
 

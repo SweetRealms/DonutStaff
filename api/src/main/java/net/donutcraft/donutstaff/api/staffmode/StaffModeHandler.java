@@ -18,6 +18,10 @@ public interface StaffModeHandler {
 
     void saveDeathPlayerInventory(Player player);
 
+    void returnPlayerInventory(Player player, Player sender);
+
+    boolean hasPlayerSavedInventory(Player player);
+
     void randomTp(Player player);
 
 }

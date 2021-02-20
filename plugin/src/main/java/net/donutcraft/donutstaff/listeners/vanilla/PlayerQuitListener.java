@@ -1,6 +1,6 @@
 package net.donutcraft.donutstaff.listeners.vanilla;
 
-import net.donutcraft.donutstaff.api.cache.Cache;
+import net.donutcraft.donutstaff.api.cache.SetCache;
 import net.donutcraft.donutstaff.api.staffmode.StaffModeManager;
 import net.donutcraft.donutstaff.util.nms.NMSManager;
 import org.bukkit.Bukkit;
@@ -15,7 +15,7 @@ import java.util.UUID;
 
 public class PlayerQuitListener implements Listener {
 
-    @Inject @Named("vanish-cache") private Cache<UUID> vanishCache;
+    @Inject @Named("vanish-cache") private SetCache<UUID> vanishCache;
     @Inject private StaffModeManager staffModeManager;
     @Inject private NMSManager nmsManager;
 

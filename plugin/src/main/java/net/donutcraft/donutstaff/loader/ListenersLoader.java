@@ -29,6 +29,7 @@ public class ListenersLoader implements Loader {
     @Inject private FoodLevelChangeListener foodLevelChangeListener;
     @Inject private PlayerQuitListener playerQuitListener;
     @Inject private PlayerExecuteCommandListener playerExecuteCommandListener;
+    @Inject private PlayerDeathListener playerDeathListener;
     @Inject private KnockbackItemListener knockbackItemListener;
     @Inject private RandomTpListener randomTpListener;
     @Inject private VanishChangeStateListener vanishChangeStateListener;
@@ -50,6 +51,7 @@ public class ListenersLoader implements Loader {
             foodLevelChangeListener,
             playerQuitListener,
             playerExecuteCommandListener,
+            playerDeathListener,
             knockbackItemListener,
             randomTpListener,
             vanishChangeStateListener

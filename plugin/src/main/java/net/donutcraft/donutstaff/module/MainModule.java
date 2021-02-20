@@ -5,22 +5,22 @@ import me.yushust.inject.Module;
 import me.yushust.inject.key.TypeReference;
 
 import net.donutcraft.donutstaff.DonutStaff;
-import net.donutcraft.donutstaff.cache.FreezeCache;
-import net.donutcraft.donutstaff.cache.StaffChatCache;
-import net.donutcraft.donutstaff.cache.StaffModeCache;
-import net.donutcraft.donutstaff.cache.VanishCache;
+import net.donutcraft.donutstaff.api.cache.MapCache;
+import net.donutcraft.donutstaff.cache.*;
 import net.donutcraft.donutstaff.files.FileCreator;
 import net.donutcraft.donutstaff.files.FileMatcher;
 import net.donutcraft.donutstaff.staffmode.SimpleStaffModeHandler;
 import net.donutcraft.donutstaff.staffmode.SimpleStaffModeManager;
 import net.donutcraft.donutstaff.util.nms.NMSManager;
 import net.donutcraft.donutstaff.util.nms.SimpleNMSManager;
-import net.donutcraft.donutstaff.api.cache.Cache;
+import net.donutcraft.donutstaff.api.cache.SetCache;
 import net.donutcraft.donutstaff.api.staffmode.StaffModeHandler;
 import net.donutcraft.donutstaff.api.staffmode.StaffModeManager;
 
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
+import java.util.List;
 import java.util.UUID;
 
 public class MainModule implements Module {
@@ -53,10 +53,14 @@ public class MainModule implements Module {
         binder.bind(StaffModeManager.class).to(SimpleStaffModeManager.class);
         binder.bind(StaffModeHandler.class).to(SimpleStaffModeHandler.class);
 
-        binder.bind(new TypeReference<Cache<UUID>>() {}).named("freeze-cache").to(FreezeCache.class).singleton();
-        binder.bind(new TypeReference<Cache<UUID>>() {}).named("staff-chat-cache").to(StaffChatCache.class).singleton();
-        binder.bind(new TypeReference<Cache<UUID>>() {}).named("staff-mode-cache").to(StaffModeCache.class).singleton();
-        binder.bind(new TypeReference<Cache<UUID>>() {}).named("vanish-cache").to(VanishCache.class).singleton();
+        binder.bind(new TypeReference<SetCache<UUID>>() {}).named("freeze-cache").to(FreezeCache.class).singleton();
+        binder.bind(new TypeReference<SetCache<UUID>>() {}).named("staff-chat-cache").to(StaffChatCache.class).singleton();
+        binder.bind(new TypeReference<SetCache<UUID>>() {}).named("staff-mode-cache").to(StaffModeCache.class).singleton();
+        binder.bind(new TypeReference<SetCache<UUID>>() {}).named("vanish-cache").to(VanishCache.class).singleton();
+        binder.bind(new TypeReference<MapCache<UUID, List<ItemStack>>>() {})
+                .named("death-inventories-cache").to(DeathInventoriesCache.class).singleton();
+        binder.bind(new TypeReference<MapCache<UUID, List<ItemStack>>>() {})
+                .named("death-armor-cache").to(DeathArmorCache.class).singleton();
 
     }
 }

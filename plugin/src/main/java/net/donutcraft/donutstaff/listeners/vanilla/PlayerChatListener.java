@@ -1,7 +1,7 @@
 package net.donutcraft.donutstaff.listeners.vanilla;
 
 import net.donutcraft.donutstaff.files.FileCreator;
-import net.donutcraft.donutstaff.api.cache.Cache;
+import net.donutcraft.donutstaff.api.cache.SetCache;
 import net.donutcraft.donutstaff.api.staffmode.StaffModeHandler;
 
 import org.bukkit.Bukkit;
@@ -19,14 +19,14 @@ public class PlayerChatListener implements Listener {
 
     @Inject private StaffModeHandler staffModeHandler;
     @Inject @Named("messages") private FileCreator messages;
-    @Inject @Named("staff-chat-cache") private Cache<UUID> staffChatCache;
+    @Inject @Named("staff-chat-cache") private SetCache<UUID> staffChatCache;
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerChatEvent(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
         String message = event.getMessage();
 
-        if (staffChatCache.exists(player.getUniqueId())) {
+        if (staffChatCache.get().contains(player.getUniqueId())) {
             for (Player staff : Bukkit.getServer().getOnlinePlayers()) {
                 if (staff.hasPermission("donutcraft.staffchat.receive")) {
                     staff.sendMessage(messages.getString("staff-mode.staff-chat.prefix")

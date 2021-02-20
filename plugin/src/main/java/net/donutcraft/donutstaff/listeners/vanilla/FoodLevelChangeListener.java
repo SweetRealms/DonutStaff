@@ -1,6 +1,6 @@
 package net.donutcraft.donutstaff.listeners.vanilla;
 
-import net.donutcraft.donutstaff.api.cache.Cache;
+import net.donutcraft.donutstaff.api.cache.SetCache;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,7 +13,7 @@ import java.util.UUID;
 
 public class FoodLevelChangeListener implements Listener {
 
-    @Inject @Named("staff-mode-cache") private Cache<UUID> staffModeCache;
+    @Inject @Named("staff-mode-cache") private SetCache<UUID> staffModeCache;
 
     @EventHandler
     public void onFoodLevelChangeEvent(FoodLevelChangeEvent event) {
@@ -21,7 +21,7 @@ public class FoodLevelChangeListener implements Listener {
             return;
         }
         Player player = (Player) event.getEntity();
-        if (staffModeCache.exists(player.getUniqueId())) {
+        if (staffModeCache.get().contains(player.getUniqueId())) {
             event.setCancelled(true);
         }
     }
