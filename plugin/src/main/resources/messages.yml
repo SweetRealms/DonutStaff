@@ -12,8 +12,6 @@ commons:
   unkown-sender: "%prefix% &cWe couldn't recognize the player name."
   args:
     prefix: "&9Use: "
-    freeze:
-      usage: "&b/freeze <player>"
     no-more-args: "&cNo more arguments."
 
 player:

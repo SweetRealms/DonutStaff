@@ -2,7 +2,7 @@ package net.donutcraft.donutstaff.api.cache;
 
 import java.util.Map;
 
-public interface MapCache<T, K> {
+public interface MapCache<K, V> {
 
-    Map<T, K> get();
+    Map<K, V> get();
 }
