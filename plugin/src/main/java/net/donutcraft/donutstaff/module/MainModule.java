@@ -1,6 +1,6 @@
 package net.donutcraft.donutstaff.module;
 
-import me.yushust.inject.Binder;
+import me.yushust.inject.AbstractModule;
 import me.yushust.inject.Module;
 import me.yushust.inject.key.TypeReference;
 
@@ -20,10 +20,11 @@ import net.donutcraft.donutstaff.api.staffmode.StaffModeManager;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
+import java.lang.reflect.Type;
 import java.util.List;
 import java.util.UUID;
 
-public class MainModule implements Module {
+public class MainModule extends AbstractModule {
 
     private final DonutStaff donutStaff;
 
@@ -32,35 +33,40 @@ public class MainModule implements Module {
     }
 
     @Override
-    public void configure(Binder binder) {
+    public void configure() {
 
         FileMatcher fileMatcher = new FileMatcher()
-                //.bind("config", new FileCreator(donutStaff, "config"))
                 .bind("items-file", new FileCreator(donutStaff, "items"))
                 .bind("messages", new FileCreator(donutStaff, "messages"));
 
+        install(fileMatcher.build());
 
+        install(new ServiceModule());
 
-        binder.install(fileMatcher.build());
+        bind(DonutStaff.class).toInstance(donutStaff);
+        bind(Plugin.class).to(DonutStaff.class);
 
-        binder.install(new ServiceModule());
+        bind(NMSManager.class).to(SimpleNMSManager.class).singleton();
 
-        binder.bind(DonutStaff.class).toInstance(donutStaff);
-        binder.bind(Plugin.class).to(DonutStaff.class);
+        bind(StaffModeManager.class).to(SimpleStaffModeManager.class);
+        bind(StaffModeHandler.class).to(SimpleStaffModeHandler.class);
 
-        binder.bind(NMSManager.class).to(SimpleNMSManager.class).singleton();
+        bind(new TypeReference<MapCache<UUID, List<ItemStack>>>() {})
+                .named("death-inventories-cache").toInstance(new MapCacheImpl<>());
+        bind(new TypeReference<MapCache<UUID, List<ItemStack>>>() {})
+                .named("death-armor-cache")
+                .toInstance(new MapCacheImpl<>());
+        bindSetCache(UUID.class, "freeze-cache");
+        bindSetCache(UUID.class, "staff-chat-cache");
+        bindSetCache(UUID.class, "staff-mode-cache");
+        bindSetCache(UUID.class, "vanish-cache");
+    }
 
-        binder.bind(StaffModeManager.class).to(SimpleStaffModeManager.class);
-        binder.bind(StaffModeHandler.class).to(SimpleStaffModeHandler.class);
-
-        binder.bind(new TypeReference<SetCache<UUID>>() {}).named("freeze-cache").to(FreezeCache.class).singleton();
-        binder.bind(new TypeReference<SetCache<UUID>>() {}).named("staff-chat-cache").to(StaffChatCache.class).singleton();
-        binder.bind(new TypeReference<SetCache<UUID>>() {}).named("staff-mode-cache").to(StaffModeCache.class).singleton();
-        binder.bind(new TypeReference<SetCache<UUID>>() {}).named("vanish-cache").to(VanishCache.class).singleton();
-        binder.bind(new TypeReference<MapCache<UUID, List<ItemStack>>>() {})
-                .named("death-inventories-cache").to(DeathInventoriesCache.class).singleton();
-        binder.bind(new TypeReference<MapCache<UUID, List<ItemStack>>>() {})
-                .named("death-armor-cache").to(DeathArmorCache.class).singleton();
-
+    private void bindSetCache(Type type, String name) {
+        if (name == null) {
+            bind(TypeReference.of(SetCache.class, type)).to(TypeReference.of(SetCacheImpl.class, type)).singleton();
+        } else {
+            bind(TypeReference.of(SetCache.class, type)).named(name).to(TypeReference.of(SetCacheImpl.class, type)).singleton();
+        }
     }
 }
