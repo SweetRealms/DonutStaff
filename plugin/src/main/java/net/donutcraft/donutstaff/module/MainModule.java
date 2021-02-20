@@ -1,7 +1,6 @@
 package net.donutcraft.donutstaff.module;
 
 import me.yushust.inject.AbstractModule;
-import me.yushust.inject.Module;
 import me.yushust.inject.key.TypeReference;
 
 import net.donutcraft.donutstaff.DonutStaff;
@@ -52,10 +51,10 @@ public class MainModule extends AbstractModule {
         bind(StaffModeHandler.class).to(SimpleStaffModeHandler.class);
 
         bind(new TypeReference<MapCache<UUID, List<ItemStack>>>() {})
-                .named("death-inventories-cache").toInstance(new MapCacheImpl<>());
+                .named("death-inventories-cache").toInstance(new SimpleMapCache<>());
         bind(new TypeReference<MapCache<UUID, List<ItemStack>>>() {})
                 .named("death-armor-cache")
-                .toInstance(new MapCacheImpl<>());
+                .toInstance(new SimpleMapCache<>());
         bindSetCache(UUID.class, "freeze-cache");
         bindSetCache(UUID.class, "staff-chat-cache");
         bindSetCache(UUID.class, "staff-mode-cache");
@@ -64,9 +63,9 @@ public class MainModule extends AbstractModule {
 
     private void bindSetCache(Type type, String name) {
         if (name == null) {
-            bind(TypeReference.of(SetCache.class, type)).to(TypeReference.of(SetCacheImpl.class, type)).singleton();
+            bind(TypeReference.of(SetCache.class, type)).to(TypeReference.of(SimpleSetCache.class, type)).singleton();
         } else {
-            bind(TypeReference.of(SetCache.class, type)).named(name).to(TypeReference.of(SetCacheImpl.class, type)).singleton();
+            bind(TypeReference.of(SetCache.class, type)).named(name).to(TypeReference.of(SimpleSetCache.class, type)).singleton();
         }
     }
 }

@@ -5,7 +5,7 @@ import net.donutcraft.donutstaff.api.cache.SetCache;
 import java.util.HashSet;
 import java.util.Set;
 
-public class SetCacheImpl<T> implements SetCache<T> {
+public class SimpleSetCache<T> implements SetCache<T> {
 
     private final Set<T> cacheSet = new HashSet<>();
 
