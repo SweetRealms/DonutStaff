@@ -29,7 +29,7 @@ public class PlayerChatListener implements Listener {
         if ((staffChatCache.get().contains(player.getUniqueId())
                 || message.startsWith(config.getString("staff-chat.short-cut"))
                         && player.hasPermission("donutstaff.staffchat"))) {
-            message = message.replace("#", "");
+            message = message.replace(config.getString("staff-chat.short-cut"), "");
 
             for (Player staff : Bukkit.getServer().getOnlinePlayers()) {
                 if (staff.hasPermission("donutcraft.staffchat.receive")) {
