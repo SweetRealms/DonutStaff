@@ -26,7 +26,9 @@ public class PlayerChatListener implements Listener {
         Player player = event.getPlayer();
         String message = event.getMessage();
 
-        if (staffChatCache.get().contains(player.getUniqueId())) {
+        if ((staffChatCache.get().contains(player.getUniqueId()) || message.startsWith("#") &&
+                player.hasPermission("donutstaff.staffchat"))) {
+            message = message.replace("#", "");
             for (Player staff : Bukkit.getServer().getOnlinePlayers()) {
                 if (staff.hasPermission("donutcraft.staffchat.receive")) {
                     staff.sendMessage(messages.getString("staff-mode.staff-chat.prefix")

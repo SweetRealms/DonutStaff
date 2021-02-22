@@ -11,6 +11,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -80,8 +81,8 @@ public class SimpleStaffModeHandler implements StaffModeHandler {
     public void saveDeathPlayerInventory(Player player) {
         Inventory inventory = player.getInventory();
 
-        List<ItemStack> content = InventoryUtils.getAvailableItems(inventory, 0, 27);
-        List<ItemStack> armor = InventoryUtils.getAvailableItems(inventory, 36, 40);
+        List<ItemStack> content = InventoryUtils.getAvailableItems(inventory, 0, 36);
+        List<ItemStack> armor = InventoryUtils.getAvailableArmor(player);
 
         if (hasPlayerSavedInventory(player)) {
             deathInventoriesCache.get().remove(player.getUniqueId());
@@ -107,7 +108,7 @@ public class SimpleStaffModeHandler implements StaffModeHandler {
                 .replace("%player_name%", player.getName())
                 .replace("%prefix%", messages.getString("commons.global-prefix")));
         InventoryUtils.addItemsToPlayer(player, deathInventoriesCache.get().get(player.getUniqueId()), true);
-        InventoryUtils.addArmorToPlayer(player, deathInventoriesCache.get().get(player.getUniqueId()), true);
+        InventoryUtils.addArmorToPlayer(player, deathArmorCache.get().get(player.getUniqueId()), true);
         deathInventoriesCache.get().remove(player.getUniqueId());
         deathArmorCache.get().remove(player.getUniqueId());
     }

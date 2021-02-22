@@ -50,8 +50,8 @@ public class CommandsLoader implements Loader {
                 freezeCommand,
                 fakeLeaveCommand,
                 clearChatCommand,
-                helpCommand,
-                reviveCommand
+                helpCommand
+                //reviveCommand
                 );
     }
 

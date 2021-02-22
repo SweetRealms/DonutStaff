@@ -4,9 +4,12 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.function.Predicate;
 
 public class InventoryUtils {
@@ -70,7 +73,7 @@ public class InventoryUtils {
         }
     }
 
-    public static void addArmorToPlayer(Player player, Iterable<ItemStack> armors, boolean dropIfNoSpace) {
+    public static void addArmorToPlayer(Player player, List<ItemStack> armors, boolean dropIfNoSpace) {
         for (ItemStack armor : armors) {
             if (!isArmor(armor)) {
                 continue;
@@ -117,19 +120,24 @@ public class InventoryUtils {
     }
 
     private static boolean isHelmet(ItemStack itemStack) {
-        return itemStack.getType().name().contains("HELMET");
+        return itemStack.getType().name().toUpperCase().contains("HELMET");
     }
 
     private static boolean isChestPlate(ItemStack itemStack) {
-        return itemStack.getType().name().contains("CHESTPLATE");
+        return itemStack.getType().name().toUpperCase().contains("CHESTPLATE");
     }
 
     private static boolean isLegging(ItemStack itemStack) {
-        return itemStack.getType().name().contains("LEGGINGS");
+        return itemStack.getType().name().toUpperCase().contains("LEGGINGS");
     }
 
     private static boolean isBoot(ItemStack itemStack) {
-        return itemStack.getType().name().contains("BOOTS");
+        return itemStack.getType().name().toUpperCase().contains("BOOTS");
+    }
+
+    public static List<ItemStack> getAvailableArmor(Player player) {
+        player.sendMessage(Arrays.asList(player.getInventory().getArmorContents()).toString());
+        return Arrays.asList(player.getInventory().getArmorContents());
     }
 
     public static List<ItemStack> getAvailableItems(Inventory inventory, int from, int to) {
