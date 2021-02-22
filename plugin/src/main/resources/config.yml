@@ -1,0 +1,4 @@
+#THIS IS THE CONFIG FILE FOR THE DONUT STAFF PLUGIN.
+
+staff-chat:
+  short-cut: "#"

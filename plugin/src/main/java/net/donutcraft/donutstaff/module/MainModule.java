@@ -35,6 +35,7 @@ public class MainModule extends AbstractModule {
     public void configure() {
 
         FileMatcher fileMatcher = new FileMatcher()
+                .bind("config", new FileCreator(donutStaff, "config"))
                 .bind("items-file", new FileCreator(donutStaff, "items"))
                 .bind("messages", new FileCreator(donutStaff, "messages"));
 

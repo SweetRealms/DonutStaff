@@ -17,8 +17,8 @@ import java.util.UUID;
 
 public class PlayerChatListener implements Listener {
 
-    @Inject private StaffModeHandler staffModeHandler;
     @Inject @Named("messages") private FileCreator messages;
+    @Inject @Named("config") private FileCreator config;
     @Inject @Named("staff-chat-cache") private SetCache<UUID> staffChatCache;
 
     @EventHandler(priority = EventPriority.LOWEST)
@@ -26,15 +26,18 @@ public class PlayerChatListener implements Listener {
         Player player = event.getPlayer();
         String message = event.getMessage();
 
-        if ((staffChatCache.get().contains(player.getUniqueId()) || message.startsWith("#") &&
-                player.hasPermission("donutstaff.staffchat"))) {
+        if ((staffChatCache.get().contains(player.getUniqueId())
+                || message.startsWith(config.getString("staff-chat.short-cut"))
+                        && player.hasPermission("donutstaff.staffchat"))) {
             message = message.replace("#", "");
+
             for (Player staff : Bukkit.getServer().getOnlinePlayers()) {
                 if (staff.hasPermission("donutcraft.staffchat.receive")) {
                     staff.sendMessage(messages.getString("staff-mode.staff-chat.prefix")
                             .replace("%player_name%", player.getName()) + message);
                 }
             }
+
             event.setMessage(null);
             event.setCancelled(true);
         }
